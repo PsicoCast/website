@@ -1,7 +1,5 @@
-import { roboto } from '../fonts';
 
-
-export function Cards({
+export function CardsPosts({
   image,
   title,
   abstract,
@@ -20,8 +18,8 @@ export function Cards({
         className="w-full h-32 object-cover"
       />
       <div className="p-4">
-        <h2 className={`text-xl font-bold mb-2 ${roboto}`}>{title}</h2>
-        <p className={`text-gray-700 ${roboto}`}>{abstract}</p>
+        <h2 className={`text-xl font-bold mb-2`}>{title}</h2>
+        <p className={`text-gray-700`}>{abstract}</p>
       </div>
     </div>
   );
