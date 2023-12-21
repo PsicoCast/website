@@ -36,14 +36,27 @@ export default function SearchBar() {
             </button>
         </div>
         <div
-            className="w-full md:w-3/5 mx-auto flex items-center justify-between mt-3"
+            className="w-full md:w-3/5 mx-auto flex items-center justify-center mt-3 py-3"
         >
             <label
-                className="flex-grow"
+                className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
             >
-                Podcast
+                <span className="mr-2">Todos</span>
                 <input
-                    className="px-3 py-2 border rounded-md focus:outline-none"
+                    className="px-3 py-2 border rounded-md focus:outline-none text-lg"
+                    type="radio"
+                    name="search-type"
+                    value="todos"
+                    defaultChecked={true}
+                    onChange={(e) => setType(e.target.value)}
+                />
+            </label>
+            <label
+                className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
+            >
+                <span className="mr-2">Podcast</span>
+                <input
+                    className="px-3 py-2 border rounded-md focus:outline-none text-lg"
                     type="radio"
                     name="search-type"
                     value="podcast"
@@ -51,11 +64,11 @@ export default function SearchBar() {
                 />
             </label>
             <label
-                className="flex-grow"
+                className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
                 >
-                Artigos
+                <span className="mr-2">Artigos</span>
                 <input
-                    className="px-3 py-2 border rounded-md focus:outline-none"
+                    className="px-3 py-2 border rounded-md focus:outline-none text-lg"
                     type="radio"
                     name="search-type"
                     value="artigos"
@@ -63,11 +76,11 @@ export default function SearchBar() {
                 />
             </label>
             <label
-                className="flex-grow"
+                className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
             >
-                Vídeos
+                <span className="mr-2">Vídeos</span>
                 <input
-                    className="px-3 py-2 border rounded-md focus:outline-none"
+                    className="px-3 py-2 border rounded-md focus:outline-none text-lg"
                     type="radio"
                     name="search-type"
                     value="videos"
@@ -75,13 +88,24 @@ export default function SearchBar() {
                 />
             </label>
             <select
-                className="w-1/3 px-3 py-2 border rounded-md focus:outline-none ml-2"
-                value='Categoria A'
+                className="max-w-max px-3 py-2 border rounded-md focus:outline-none ml-2"
+                value={category}
                 onChange={(e) => setCategory(e.target.value)}
             >
-                <option value="Categoria A">Categoria A</option>
-                <option value="Categoria B">Categoria B</option>
-                <option value="Categoria C">Categoria C</option>
+                <option
+                    className="py-1 text-lg" 
+                    value=""
+                    disabled                    
+                >Selecione a Categoria</option>
+                <option
+                    className="py-1 text-lg"                
+                    value="Categoria A">Categoria A</option>
+                <option 
+                    className="py-1 text-lg" 
+                    value="Categoria B">Categoria B</option>
+                <option 
+                    className="py-1 text-lg" 
+                    value="Categoria C">Categoria C</option>
             </select>
         </div>
     </>
