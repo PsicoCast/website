@@ -7,26 +7,15 @@ const sectionButtons = 'text-white bg-gray-800 hover:bg-gray-900 focus:outline-n
 
 export default function Header() {
   return (
-    <div>
+    <div
+        className='rounded-lg border-2 border-gray-400 m-2'
+    >
         <SearchBar />
-        <div>
+        <div
+            className="flex justify-center space-x-4 items-center py-3"
+        >
             <Button
-                name="Podcast"
-                className={sectionButtons}
-                clicking={() => console.log('entrar')}
-            />
-            <Button
-                name="Vídeos"
-                className={sectionButtons}
-                clicking={() => console.log('entrar')}
-            />
-            <Button
-                name="Artigos"
-                className={sectionButtons}
-                clicking={() => console.log('entrar')}
-            />
-            <Button 
-                name='Contato'
+                name="Home"
                 className={sectionButtons}
                 clicking={() => console.log('entrar')}
             />
@@ -35,6 +24,16 @@ export default function Header() {
                 className={sectionButtons}
                 clicking={() => console.log('entrar')}
             />
+            <Button 
+                name='Outros possiveis botões'
+                className={sectionButtons}
+                clicking={() => console.log('entrar')}
+            />
+            <Button 
+                name='Contato'
+                className={sectionButtons}
+                clicking={() => console.log('entrar')}
+                />
         </div>      
     </div>
   )

@@ -15,13 +15,12 @@ export default function SearchBar() {
   return (
     <>
         <div
-            className="w-full md:w-3/5 mx-auto flex items-center mt-3"
+            className="flex justify-center items-center mt-3 py-3"
         >
             <label
-                className="flex-grow"
             >
                 <input
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none"
+                    className="w-full px-40 py-2 border rounded-md focus:outline-none"
                     type="text"
                     placeholder="Pesquise um conteúdo"
                     value={search}
@@ -36,7 +35,7 @@ export default function SearchBar() {
             </button>
         </div>
         <div
-            className="w-full md:w-3/5 mx-auto flex items-center justify-center mt-3 py-3"
+            className="w-full md:w-3/5 mx-auto flex items-center justify-center py-3"
         >
             <label
                 className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
