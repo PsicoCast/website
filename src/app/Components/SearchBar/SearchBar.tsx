@@ -1,15 +1,55 @@
 'use client';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import SeachContext from '../../Context/SearchContext';
 
 export default function SearchBar() {
-    const [ search, setSearch ] = useState('');
-    const [ category, setCategory ] = useState('');
-    const [ type, setType ] = useState('');
+    const {
+        search,
+        setSearch,
+        category,
+        setCategory,
+        type,
+        setType,
+        allFromFetch,
+        setFlag,
+        materialFromFetch, 
+        setMaterialFromFetch
+    } = useContext(SeachContext)
 
     // as categorias virão da api, a busca poderá ser filtrada por categoria e tipo, ou somente texto de descrição e/ou keywords
 
-    const handleSearch = () => {
-        console.log('colocar no estado global o retorno da api de acordo com a filtragem');
+    const fetchResults = async (url: any) => {
+        const number12 = 12;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (!data) {
+          global.alert('Sorry, we haven\'t found.');
+          return [];
+        }
+        return data.slice(0, number12);
+      };
+
+    const handleSearch = async () => {
+        setFlag('search');
+
+        let url = 'https://www.psicocast.com/search';
+
+        if (search) {
+          url += `?search=${search}`;
+        }
+        if (type) {
+          url += `${search ? '&' : '?'}type=${type}`;
+        }
+        if (category) {
+          url += `${search || type ? '&' : '?'}category=${category}`;
+        }
+    
+        try {
+          const results = await fetchResults(url);
+          setMaterialFromFetch(results);
+        } catch (error) {
+          console.error(error);
+        }
     }
 
   return (
@@ -82,7 +122,7 @@ export default function SearchBar() {
                     className="px-3 py-2 border rounded-md focus:outline-none text-lg"
                     type="radio"
                     name="search-type"
-                    value="videos"
+                    value={type}
                     onChange={(e) => setType(e.target.value)}
                 />
             </label>
