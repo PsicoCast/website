@@ -10,9 +10,7 @@ export default function SearchBar() {
         setCategory,
         type,
         setType,
-        allFromFetch,
         setFlag,
-        materialFromFetch, 
         setMaterialFromFetch
     } = useContext(SeachContext)
 
@@ -34,7 +32,7 @@ export default function SearchBar() {
 
         let url = 'https://www.psicocast.com/search';
 
-        if (search) {
+        if (search.length > 0) {
           url += `?search=${search}`;
         }
         if (type) {

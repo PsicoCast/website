@@ -1,8 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import SearchContext from './SearchContext';
 
-function HeaderProvider({ children }) {
+function HeaderProvider({ children }: any) {
     const [ search, setSearch ] = useState('');
     const [ category, setCategory ] = useState('');
     const [ type, setType ] = useState('');
@@ -48,8 +47,3 @@ function HeaderProvider({ children }) {
   }
   
   export default HeaderProvider;
-  
-  HeaderProvider.propTypes = {
-    children: PropTypes.node,
-  }.isRequired;
-  
