@@ -1,12 +1,16 @@
 'use client';
 import { useState } from "react";
+import AllCards from "./Components/AllCards";
+import PodcastsCards from "./Components/PodcastsCards";
+import ArticleCards from "./Components/ArticleCards";
+import VideoCards from "./Components/VideoCards";
 
 const sectionButtons = 'text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700';
 
 export default function Page() {
   const [ search, setSearch ] = useState('');
   const [ category, setCategory ] = useState('');
-  const [ type, setType ] = useState('');
+  const [ type, setType ] = useState('todos');
 
   const handleSearch = () => {
     console.log('colocar no estado global o retorno da api de acordo com a filtragem');
@@ -137,6 +141,10 @@ export default function Page() {
             </button> 
         </div>      
     </div>
+    {type === 'todos' && <AllCards category={category} search={search} />}
+    {type === 'podcast' && <PodcastsCards category={category} search={search} />}
+    {type === 'artigos' && <ArticleCards category={category} search={search} />}
+    {type === 'videos' && <VideoCards category={category} search={search} />}
     </main>
   );
 }
