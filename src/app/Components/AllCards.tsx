@@ -1,6 +1,6 @@
 import { mockArray } from '../../Mocks/posts';
 
-export default function AllCards({search}: {search: string}) {
+export default function AllCards({category, search}: {category: string, search: string}) {
 
   const filteredPosts = mockArray.filter(post => 
     search === '' || 
