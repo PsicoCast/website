@@ -1,5 +1,5 @@
 import { mockArray } from '../../Mocks/posts';
-// import Image from 'next/image';
+import Image from 'next/image';
 
 export default function VideoCards({category, search}: {category: string, search: string}) {
   
@@ -18,6 +18,11 @@ export default function VideoCards({category, search}: {category: string, search
             Seu navegador não suporta o elemento de vídeo.
           </video>
         </div>
+        {post.thumb ? 
+        <div className="w-full h-32 relative mb-2">
+          <Image src={post.thumb} alt={post.title} layout="fill" objectFit="contain"/>
+        </div> 
+        : null}
         <h1>{post.type}</h1>
         <h2 className="text-xl font-bold">{post.title}</h2>
         <p>Postado em {post.createdAt.toLocaleDateString()}</p>
