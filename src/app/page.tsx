@@ -121,23 +121,23 @@ export default function Page() {
                         className={sectionButtons}
                         onClick={() => console.log('entrar')}            
                     >
-                        Home
+                        botao 1
                     </button>
                     <button
                         className={sectionButtons}
                         onClick={() => console.log('entrar')}
-                    >Módulos
+                    >botao 2
                     </button>
                     <button
                         className={sectionButtons}
                         onClick={() => console.log('entrar')}
                     >
-                    Outros possiveis botões
+                        botao 3
                     </button> 
                     <button
                         className={sectionButtons}
                         onClick={() => console.log('entrar')}
-                    >Contato
+                    >botão 4
                     </button> 
                 </div>
             </div>
