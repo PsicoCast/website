@@ -146,7 +146,8 @@ export default function Page() {
             className='flex mt-4 ml-1 mr-1 space-x-1'
         >
             <article
-                className="w-3/4 border border-black rounded-lg"
+                // className="w-3/4 border border-black rounded-lg"
+                className="md:w-3/5 lg:w-3/4 border border-black rounded-lg"
             >
                 {type === 'todos' && <AllCards category={category} search={search} />}
                 {type === 'podcast' && <PodcastsCards category={category} search={search} />}
@@ -154,7 +155,7 @@ export default function Page() {
                 {type === 'videos' && <VideoCards category={category} search={search} />}
             </article>
             <div
-                className="w-1/4 h-full border border-black rounded-lg sidebar sticky top-0"
+                className="md:w-2/5 lg:w-1/4 h-full border border-black rounded-lg sidebar sticky top-0"
             >
                 <Sidebar />
             </div>
