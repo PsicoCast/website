@@ -10,10 +10,12 @@ export default function Page() {
 
   const handleSearch = () => {
     console.log('colocar no estado global o retorno da api de acordo com a filtragem');
+    
 }
  
   return (
     <main>
+     
           <div
         className='rounded-lg border-2 border-gray-400 m-2'
     >
