@@ -1,9 +1,16 @@
 import { mockArray } from '../../Mocks/posts';
 
-export default function AllCards({category, search}: {category: string, search: string}) {
+export default function AllCards({search}: {search: string}) {
+
+  const filteredPosts = mockArray.filter(post => 
+    search === '' || 
+    post.title.toLowerCase().includes(search.toLowerCase()) || 
+    post.text.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {mockArray.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).map((post, index) => (
+      {filteredPosts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).map((post, index) => (
         <div key={index} className="border p-4 rounded-lg">
           <img src={post.thumb} alt={post.title} className="w-full h-32 object-contain mb-2"/>
           <h1>{post.type}</h1>
