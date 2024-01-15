@@ -154,7 +154,7 @@ export default function Page() {
                 {type === 'videos' && <VideoCards category={category} search={search} />}
             </article>
             <div
-                className="w-1/4 h-full border border-black rounded-lg"
+                className="w-1/4 h-full border border-black rounded-lg sidebar sticky top-0"
             >
                 <Sidebar />
             </div>
