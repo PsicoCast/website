@@ -7,6 +7,9 @@ export default function AllCards({category, search}: {category: string, search: 
   const [ articleContent, setArticleContent ] = useState(false);
   const [ content, setContent ] = useState('');
 
+  const local = JSON.stringify(mockArray);
+  localStorage.setItem('posts', local);
+
   const filteredPosts = mockArray.filter(post => 
     search === '' || 
     post.title.toLowerCase().includes(search.toLowerCase()) || 
