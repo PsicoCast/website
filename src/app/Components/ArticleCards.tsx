@@ -4,14 +4,14 @@ import { useState } from "react";
 
 export default function ArticleCards({category, search}: {category: string, search: string}) {
   const [ articleContent, setArticleContent ] = useState(false);
+  const [ content, setContent ] = useState('');
   
   const filteredPosts = mockArray.filter((post) =>  
   post.type === 'artigo' &&
   (post.title.toLowerCase().includes(search.toLowerCase()) ||
   post.text.toLowerCase().includes(search.toLowerCase())));
 
-
-  !articleContent ? {
+  if (!articleContent) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {filteredPosts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).map((post, index) => (
@@ -25,14 +25,27 @@ export default function ArticleCards({category, search}: {category: string, sear
           <h2 className="text-xl font-bold">{post.title}</h2>
           <p>Postado em {post.createdAt.toLocaleDateString()}</p>
           {/*<p>{post.description}</p>*/}
-          <a href={post.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
+          <button
+            onClick={() => {
+              setContent(post.text)
+              setArticleContent(true)
+            }}
+          >Veja o Artigo</button>
         </div>
       ))}
     </div>
-)
-    
+    )    
   } else {
-    return <p>teste</p>
+    return (
+    <>
+      <p>{content}</p>
+      <button
+        onClick={() => {
+          setContent('')
+          setArticleContent(false)
+        }}
+      >Voltar</button>
+    </>
+    )
   }
-  
 }

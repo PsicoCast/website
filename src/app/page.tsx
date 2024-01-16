@@ -95,7 +95,7 @@ export default function Page() {
                             onChange={(e) => setType(e.target.value)}
                         />
                     </label>
-                    <select
+                    {/* <select
                         className="max-w-max px-3 py-2 border rounded-md focus:outline-none ml-2"
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
@@ -114,7 +114,7 @@ export default function Page() {
                         <option 
                             className="py-1 text-lg" 
                             value="Categoria C">Categoria C</option>
-                    </select>
+                    </select> */}
                 </div>
                 <div
                     className="w-full md:w-1/2 mx-auto flex flex-col md:flex-row items-center justify-center py-3"
