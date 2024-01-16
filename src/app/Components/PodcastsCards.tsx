@@ -4,9 +4,9 @@ import Image from 'next/image';
 export default function PodcastsCards({category, search}: {category: string, search: string}) {
   
   const filteredPosts = mockArray.filter((post) =>  
-  post.category.toLowerCase() === category.toLowerCase() ||
-  post.title.toLowerCase().includes(search.toLowerCase()) ||
-  post.text.toLowerCase().includes(search.toLowerCase()));
+  post.type === 'podcast' && 
+  (post.title.toLowerCase().includes(search.toLowerCase()) ||
+  post.text.toLowerCase().includes(search.toLowerCase())));
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -13,6 +13,8 @@ export default function Page() {
   const [ category, setCategory ] = useState('');
   const [ type, setType ] = useState('todos');
 
+  console.log(type);
+  
  
   return (
     <main 
