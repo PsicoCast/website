@@ -5,6 +5,7 @@ export default function VideoCards({category, search}: {category: string, search
 
   const serializedPosts = localStorage.getItem('posts');
   let deserializedPosts;
+  let filteredPosts;
 
   if (serializedPosts) {
     deserializedPosts = JSON.parse(serializedPosts, (key, value) => {
@@ -14,7 +15,7 @@ export default function VideoCards({category, search}: {category: string, search
       return value;
     });
   
-    console.log('Retrieved from LS:', deserializedPosts);
+    /* console.log('Retrieved from LS:', deserializedPosts); */
   }
 
   if (deserializedPosts) {      
@@ -23,7 +24,7 @@ export default function VideoCards({category, search}: {category: string, search
     (post.title.toLowerCase().includes(search.toLowerCase()) ||
     post.text.toLowerCase().includes(search.toLowerCase())));
   } else {
-    deserializedPosts = mockArray.filter((post) =>
+    filteredPosts = mockArray.filter((post) =>
     post.type === 'video' &&
     (post.title.toLowerCase().includes(search.toLowerCase()) ||
     post.text.toLowerCase().includes(search.toLowerCase())));
@@ -31,7 +32,22 @@ export default function VideoCards({category, search}: {category: string, search
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {deserializedPosts.sort((a: any, b: any) => 
+    {deserializedPosts && deserializedPosts.sort((a: any, b: any) => 
+    b.createdAt.getTime() - a.createdAt.getTime()).map((post: any, index: number) => (
+      <div key={index} className="border p-4 rounded-lg">
+        {post.thumb ? 
+        <div className="w-full h-32 relative mb-2">
+          <Image src={post.thumb} alt={post.title} layout="fill" objectFit="contain"/>
+        </div> 
+        : null}
+        <h1>{post.type}</h1>
+        <h2 className="text-xl font-bold">{post.title}</h2>
+        <p>Postado em {post.createdAt.toLocaleDateString()}</p>
+        {/*<p>{post.description}</p>*/}
+        <a href={post.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
+      </div>
+    ))}
+    {filteredPosts && filteredPosts.sort((a: any, b: any) => 
     b.createdAt.getTime() - a.createdAt.getTime()).map((post: any, index: number) => (
       <div key={index} className="border p-4 rounded-lg">
         {post.thumb ? 

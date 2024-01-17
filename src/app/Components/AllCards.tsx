@@ -8,7 +8,7 @@ export default function AllCards({category, search}: {category: string, search: 
   const [ content, setContent ] = useState('');
 
   const posts = mockArray;
-  console.log('Original Array:', posts);
+  /* console.log('Original Array:', posts); */
 
   const serializedPosts = JSON.stringify(posts, (key, value) => {
     if (value instanceof Date) {
@@ -17,7 +17,7 @@ export default function AllCards({category, search}: {category: string, search: 
     return value;
   });
 
-localStorage.setItem('posts', serializedPosts);
+  localStorage.setItem('posts', serializedPosts);
 
 
   const filteredPosts = mockArray.filter(post => 
