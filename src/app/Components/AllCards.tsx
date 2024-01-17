@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
 
@@ -10,14 +10,18 @@ export default function AllCards({category, search}: {category: string, search: 
   const posts = mockArray;
   /* console.log('Original Array:', posts); */
 
-  const serializedPosts = JSON.stringify(posts, (key, value) => {
-    if (value instanceof Date) {
-      return value.toISOString();
-    }
-    return value;
-  });
+  useEffect(() => {
+    const serializedPosts = JSON.stringify(posts, (key, value) => {
+      if (value instanceof Date) {
+        return value.toISOString();
+      }
+      return value;
+    });
+  
+    localStorage.setItem('posts', serializedPosts);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  localStorage.setItem('posts', serializedPosts);
 
 
   const filteredPosts = mockArray.filter(post => 

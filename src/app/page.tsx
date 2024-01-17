@@ -37,12 +37,14 @@ export default function Page() {
                 />
             </label>
             </div>
-            <div
-                className="flex flex-row md:flex-col"
-            >
+            {/* <div
+                className="flex flex-row md:flex-col flex-wrap justify-center items-center w-full"
+            > */}
                 <div
-                    className="w-full md:w-1/2 mx-auto flex flex-col md:flex-row items-center justify-center py-3"
+                    // className="md:w-1/2 mx-auto flex flex-col md:flex-row flex-wrap w-full items-center justify-center py-3"
+                    className="mx-auto flex md:flex-row flex-wrap w-full items-center justify-center py-3"
                 >
+
                     <label
                         className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
                     >
@@ -92,6 +94,7 @@ export default function Page() {
                             onChange={(e) => setType(e.target.value)}
                         />
                     </label>
+
                     {/* <select
                         className="max-w-max px-3 py-2 border rounded-md focus:outline-none ml-2"
                         value={category}
@@ -113,7 +116,7 @@ export default function Page() {
                             value="Categoria C">Categoria C</option>
                     </select> */}
                 </div>
-                <div
+                {/* <div
                     className="w-full md:w-1/2 mx-auto flex flex-col md:flex-row items-center justify-center py-3"
                 >
                     <button
@@ -138,8 +141,8 @@ export default function Page() {
                         onClick={() => console.log('entrar')}
                     >botão 4
                     </button> 
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
         </header>
         <section
             className='flex mt-4 ml-1 mr-1 space-x-1'
