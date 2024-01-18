@@ -10,7 +10,6 @@ const sectionButtons = 'text-white bg-gray-800 hover:bg-gray-900 focus:outline-n
 
 export default function Page() {
   const [ search, setSearch ] = useState('');
-  const [ category, setCategory ] = useState('');
   const [ type, setType ] = useState('todos');
  
   return (
@@ -95,26 +94,6 @@ export default function Page() {
                         />
                     </label>
 
-                    {/* <select
-                        className="max-w-max px-3 py-2 border rounded-md focus:outline-none ml-2"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    >
-                        <option
-                            className="py-1 text-lg" 
-                            value=""
-                            disabled                    
-                        >Selecione a Categoria</option>
-                        <option
-                            className="py-1 text-lg"                
-                            value="Categoria A">Categoria A</option>
-                        <option 
-                            className="py-1 text-lg" 
-                            value="Categoria B">Categoria B</option>
-                        <option 
-                            className="py-1 text-lg" 
-                            value="Categoria C">Categoria C</option>
-                    </select> */}
                 </div>
                 {/* <div
                     className="w-full md:w-1/2 mx-auto flex flex-col md:flex-row items-center justify-center py-3"
@@ -151,10 +130,10 @@ export default function Page() {
                 // className="w-3/4 border border-black rounded-lg"
                 className="md:w-3/5 lg:w-3/4 border border-black rounded-lg"
             >
-                {type === 'todos' && <AllCards category={category} search={search} />}
-                {type === 'podcast' && <PodcastsCards category={category} search={search} />}
-                {type === 'artigos' && <ArticleCards category={category} search={search} />}
-                {type === 'videos' && <VideoCards category={category} search={search} />}
+                {type === 'todos' && <AllCards search={search} />}
+                {type === 'podcast' && <PodcastsCards search={search} />}
+                {type === 'artigos' && <ArticleCards search={search} />}
+                {type === 'videos' && <VideoCards search={search} />}
             </article>
             <div
                 className="md:w-2/5 lg:w-1/4 h-full border border-black rounded-lg sidebar sticky top-0"
