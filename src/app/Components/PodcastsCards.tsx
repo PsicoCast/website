@@ -1,7 +1,7 @@
 import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
 
-export default function PodcastsCards({category, search}: {category: string, search: string}) {
+export default function PodcastsCards({search}: {search: string}) {
   
   const serializedPosts = localStorage.getItem('posts');
   let deserializedPosts;
@@ -45,8 +45,7 @@ export default function PodcastsCards({category, search}: {category: string, sea
         {/*<p>{post.description}</p>*/}
         <a href={post.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
       </div>
-    ))}
-    
+    ))}  
     {filteredPosts && filteredPosts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).map((post, index) => (
       <div key={index} className="border p-4 rounded-lg">
         {post.thumb ? 

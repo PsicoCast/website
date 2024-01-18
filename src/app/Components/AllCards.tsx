@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
 
-export default function AllCards({category, search}: {category: string, search: string}) {
+export default function AllCards({search}: {search: string}) {
 
   const [ articleContent, setArticleContent ] = useState(false);
   const [ content, setContent ] = useState('');

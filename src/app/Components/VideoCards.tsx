@@ -1,7 +1,7 @@
 import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
 
-export default function VideoCards({category, search}: {category: string, search: string}) {
+export default function VideoCards({search}: {search: string}) {
 
   const serializedPosts = localStorage.getItem('posts');
   let deserializedPosts;

@@ -2,7 +2,7 @@ import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
 import { useState } from "react";
 
-export default function ArticleCards({category, search}: {category: string, search: string}) {
+export default function ArticleCards({search}: {search: string}) {
   const [ articleContent, setArticleContent ] = useState(false);
   const [ content, setContent ] = useState('');
   
@@ -91,4 +91,3 @@ export default function ArticleCards({category, search}: {category: string, sear
   }
 }
 
-// aaa
