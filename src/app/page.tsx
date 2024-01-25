@@ -1,9 +1,10 @@
 'use client';
 import { useState } from "react";
-import AllCards from "./Components/AllCards";
-import PodcastsCards from "./Components/PodcastsCards";
+import AllCardsList from "./Components/AllCardsList";
+import PodcastsCards from "./Components/PodcastCard";
 import ArticleCards from "./Components/ArticleCards";
-import VideoCards from "./Components/VideoCards";
+import VideoCards from "./Components/VideoCard";
+import ModulesList from "./Components/ModulesList";
 import Sidebar from "./Components/Sidebar/Sidebar";
 
 const sectionButtons = 'text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700';
@@ -11,6 +12,9 @@ const sectionButtons = 'text-white bg-gray-800 hover:bg-gray-900 focus:outline-n
 export default function Page() {
   const [ search, setSearch ] = useState('');
   const [ type, setType ] = useState('todos');
+  
+  const useEffect = () => {}
+
  
   return (
     <main 
@@ -93,6 +97,18 @@ export default function Page() {
                             onChange={(e) => setType(e.target.value)}
                         />
                     </label>
+                    <label
+                        className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
+                    >
+                        <span className="mr-2">Módulos</span>
+                        <input
+                            className="px-3 py-2 border rounded-md focus:outline-none text-lg"
+                            type="radio"
+                            name="search-type"
+                            value="modules"
+                            onChange={(e) => setType(e.target.value)}
+                        />
+                    </label>
 
                 </div>
                 {/* <div
@@ -130,10 +146,8 @@ export default function Page() {
                 // className="w-3/4 border border-black rounded-lg"
                 className="md:w-3/5 lg:w-3/4 border border-black rounded-lg"
             >
-                {type === 'todos' && <AllCards search={search} />}
-                {type === 'podcast' && <PodcastsCards search={search} />}
-                {type === 'artigos' && <ArticleCards search={search} />}
-                {type === 'videos' && <VideoCards search={search} />}
+              {type !== 'modules' && <AllCardsList search={search} type={type} />}
+              {type === 'modules' && <ModulesList />} 
             </article>
             <div
                 className="md:w-2/5 lg:w-1/4 h-full border border-black rounded-lg sidebar sticky top-0"
