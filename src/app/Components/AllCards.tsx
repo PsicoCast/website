@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
 
-export default function AllCards({search}: {search: string}) {
+export default function AllCards({ search }: { search: string}) {
 
   const [ articleContent, setArticleContent ] = useState(false);
   const [ content, setContent ] = useState('');
@@ -32,6 +32,7 @@ export default function AllCards({search}: {search: string}) {
 
 
   if (!articleContent) {
+    
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredPosts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).map((post, index) => (
