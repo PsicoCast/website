@@ -54,7 +54,7 @@ export default function PodcastCard ({ info }: PodcastCardProps) {
         : null}
         <h1>{info.type}</h1>
         <h2 className="text-xl font-bold">{info.title}</h2>
-        <p>infoado em {info.createdAt.toLocaleDateString()}</p>
+        <p>Postado em {info.createdAt.toLocaleDateString()}</p>
         {/*<p>{info.description}</p>*/}
         <a href={info.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
       </div>

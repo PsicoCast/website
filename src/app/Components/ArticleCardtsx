@@ -1,13 +1,27 @@
-import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
 import { useState } from "react";
 
-export default function ArticleCards({search}: {search: string}) {
+interface InfoProps {
+  type: string,
+  title: string,
+  text: string,
+  link: string,
+  thumb: string,
+  category: string,
+  createdAt: Date
+}
+
+type ArticleProps = {
+  info: InfoProps;
+}
+
+
+export default function ArticleCards({ info }: ArticleProps) {
   const [ articleContent, setArticleContent ] = useState(false);
   const [ content, setContent ] = useState('');
   
-  const serializedPosts = localStorage.getItem('posts');
-  let deserializedPosts;
+ /*  const serializedPosts = localStorage.getItem('posts');
+  let deserializedPosts; */
   let filteredPosts;
 
 /*   if (serializedPosts) {
@@ -34,25 +48,29 @@ export default function ArticleCards({search}: {search: string}) {
 
   if (!articleContent) {
     return (
-     
-        <div key={index} className="border p-4 rounded-lg">
-          {post.thumb ? 
-          <div className="w-full h-32 relative mb-2">
-            <Image src={post.thumb} alt={post.title} layout="fill" objectFit="contain"/>
-          </div> 
-          : null}
-          <h1>{post.type}</h1>
-          <h2 className="text-xl font-bold">{post.title}</h2>
-          <p>Postado em {post.createdAt.toLocaleDateString()}</p>
-          {/*<p>{post.description}</p>*/}
-          <button
-            onClick={() => {
-              setContent(post.text)
-              setArticleContent(true)
-            }}
-          >Veja o Artigo</button>
-        </div>
-         
+      <div className="border p-4 rounded-lg">
+        {info.thumb ? 
+        (<div className="w-full h-32 relative mb-2">
+          <Image
+            src={info.thumb}
+            alt="Imagem do artigo"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>)
+        : null}
+      <h1>{info.type}</h1>
+      <h2 className="text-xl font-bold">{info.title}</h2>
+      <p>Postado em {info.createdAt.toLocaleDateString()}</p>
+      {/*<p>{post.description}</p>*/}
+      <button
+        onClick={() => {
+          setContent(post.text)
+          setArticleContent(true)
+        }}
+      >Veja o Artigo</button>
+     </div>
+    )
   } else {
     return (
     <>
