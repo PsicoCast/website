@@ -18,8 +18,8 @@ type VideoProps = {
 export default function VideoCard({ info }: VideoProps) {
 
 /*   const serializedPosts = localStorage.getItem('posts'); */
-  let deserializedPosts;
-  let filteredPosts;
+  // let deserializedPosts;
+  // let filteredPosts;
 
 /*   if (serializedPosts) {
     deserializedPosts = JSON.parse(serializedPosts, (key, value) => {
@@ -42,8 +42,7 @@ export default function VideoCard({ info }: VideoProps) {
     post.text.toLowerCase().includes(search.toLowerCase())));
   } */
 
-  return (
-   
+  return (   
       <div className="border p-4 rounded-lg">
         {info.thumb ? 
         <div className="w-full h-32 relative mb-2">
@@ -55,8 +54,7 @@ export default function VideoCard({ info }: VideoProps) {
         <p>Postado em {info.createdAt.toLocaleDateString()}</p>
         {/*<p>{post.description}</p>*/}
         <a href={info.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
-      </div>
-    
+      </div>    
   )
 }
 

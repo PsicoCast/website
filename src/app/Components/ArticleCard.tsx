@@ -18,7 +18,6 @@ type ArticleProps = {
 
 export default function ArticleCards({ info }: ArticleProps) {
   const [ articleContent, setArticleContent ] = useState(false);
-  const [ content, setContent ] = useState('');
   
  /*  const serializedPosts = localStorage.getItem('posts');
   let deserializedPosts; */
@@ -46,43 +45,35 @@ export default function ArticleCards({ info }: ArticleProps) {
     post.text.toLowerCase().includes(search.toLowerCase())));
   } */
 
-  if (!articleContent) {
     return (
       <div className="border p-4 rounded-lg">
         {info.thumb ? 
         (<div className="w-full h-32 relative mb-2">
-          <Image
-            src={info.thumb}
-            alt="Imagem do artigo"
-            layout="fill"
-            objectFit="cover"
-          />
+          <Image src={info.thumb} alt={info.title} layout="fill" objectFit="contain"/>
         </div>)
         : null}
       <h1>{info.type}</h1>
       <h2 className="text-xl font-bold">{info.title}</h2>
       <p>Postado em {info.createdAt.toLocaleDateString()}</p>
-      {/*<p>{post.description}</p>*/}
-      <button
-        onClick={() => {
-          setContent(post.text)
-          setArticleContent(true)
-        }}
-      >Veja o Artigo</button>
+      {articleContent ? 
+        <div className="p-4">
+          <p>{info.text}</p>
+          <button
+            onClick={() => {
+              setArticleContent(false)
+            }}
+          >Fechar Artigo</button>
+        </div>
+      :
+        <div>
+          <button
+            onClick={() => {
+              setArticleContent(true)
+            }}
+          >Veja o Artigo</button>
+        </div>
+      }
      </div>
     )
-  } else {
-    return (
-    <>
-      <p>{content}</p>
-      <button
-        onClick={() => {
-          setContent('')
-          setArticleContent(false)
-        }}
-      >Voltar</button>
-    </>
-    )
-  }
 }
 

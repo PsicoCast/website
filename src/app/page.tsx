@@ -1,9 +1,6 @@
 'use client';
 import { useState } from "react";
 import AllCardsList from "./Components/AllCardsList";
-import PodcastsCards from "./Components/PodcastCard";
-import ArticleCards from "./Components/ArticleCards";
-import VideoCards from "./Components/VideoCard";
 import ModulesList from "./Components/ModulesList";
 import Sidebar from "./Components/Sidebar/Sidebar";
 
@@ -69,7 +66,7 @@ export default function Page() {
                             className="px-3 py-2 border rounded-md focus:outline-none text-lg"
                             type="radio"
                             name="search-type"
-                            value="podcast"
+                            value="podcasts"
                             onChange={(e) => setType(e.target.value)}
                         />
                     </label>
@@ -111,39 +108,11 @@ export default function Page() {
                     </label>
 
                 </div>
-                {/* <div
-                    className="w-full md:w-1/2 mx-auto flex flex-col md:flex-row items-center justify-center py-3"
-                >
-                    <button
-                        className={sectionButtons}
-                        onClick={() => console.log('entrar')}            
-                    >
-                        botao 1
-                    </button>
-                    <button
-                        className={sectionButtons}
-                        onClick={() => console.log('entrar')}
-                    >botao 2
-                    </button>
-                    <button
-                        className={sectionButtons}
-                        onClick={() => console.log('entrar')}
-                    >
-                        botao 3
-                    </button> 
-                    <button
-                        className={sectionButtons}
-                        onClick={() => console.log('entrar')}
-                    >botão 4
-                    </button> 
-                </div> */}
-            {/* </div> */}
         </header>
         <section
             className='flex mt-4 ml-1 mr-1 space-x-1'
         >
             <article
-                // className="w-3/4 border border-black rounded-lg"
                 className="md:w-3/5 lg:w-3/4 border border-black rounded-lg"
             >
               {type !== 'modules' && <AllCardsList search={search} type={type} />}

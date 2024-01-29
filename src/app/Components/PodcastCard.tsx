@@ -17,9 +17,9 @@ type PodcastCardProps = {
 
 export default function PodcastCard ({ info }: PodcastCardProps) {
   
- /*  const serializedPosts = localStorage.getItem('posts'); */
-  let deserializedPosts;
-  let filteredPosts;
+//  /*  const serializedPosts = localStorage.getItem('posts'); */
+//   let deserializedPosts;
+//   let filteredPosts;
 
 /*   if (serializedPosts) {
     deserializedPosts = JSON.parse(serializedPosts, (key, value) => {
@@ -44,8 +44,6 @@ export default function PodcastCard ({ info }: PodcastCardProps) {
   }  */
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-   
       <div className="border p-4 rounded-lg">
         {info.thumb ? 
         <div className="w-full h-32 relative mb-2">
@@ -57,8 +55,6 @@ export default function PodcastCard ({ info }: PodcastCardProps) {
         <p>Postado em {info.createdAt.toLocaleDateString()}</p>
         {/*<p>{info.description}</p>*/}
         <a href={info.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
-      </div>
-   
       </div>
     )}
 
