@@ -40,10 +40,6 @@ export default function AllCardsList({search, type}: {search: string, type:strin
     // }
   // eslint-disable-next-line react-hooks/exhaustive-deps
 
-
-
-  console.log(posts[0].type)
-
   if (type === 'todos') {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -53,7 +49,7 @@ export default function AllCardsList({search, type}: {search: string, type:strin
             <div key={index}>
               {post.type === 'podcast' && <PodcastCard info={post} key={index} />}
               {post.type === 'video' && <VideoCard info={post} key={index} />}
-              {post.type === 'artigo' && <ArticleCard info={post} key={index} />}           
+              {post.type === 'artigo' && <ArticleCard info={post} key={index} />}      
             </div>
           ))}
       </div>

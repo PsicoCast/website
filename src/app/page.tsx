@@ -21,48 +21,44 @@ export default function Page() {
             className="w-full bg-gray-100 dark:bg-gray-900 border border-black rounded-lg"
             
     >
-        <div className="absolute top-2 left-2 w-16 h-16">
-            <Image src="/logo.png" alt="Logo" layout="fill" objectFit="contain"/>
-        </div>
-            <div
-            className="flex justify-center items-center mt-3 py-3"
-        >
-            <label
-            >
-                <input
+            <div className="absolute top-2 left-2 w-16 h-16 md:w-16 md:h-16">
+                <Image src="/logo.png" alt="Logo" layout="fill" objectFit="contain"/>
+            </div>
+            <div className="flex justify-center items-center mt-16 md:mt-3 py-3">
+                <label>
+                    <input
                     className="w-full max-w-full px-3 py-2 border rounded-md focus:outline-none"
                     type="text"
                     placeholder="Pesquise um conteúdo"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                />
-            </label>
+                    />
+                </label>
             </div>
-                <div
-
-                    className="mx-auto flex md:flex-row flex-wrap w-full items-center justify-center py-3"
-                >
-                    <button
-                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'todos' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                        onClick={() => setType('todos')}
-                    >Todos</button>
-                    <button
-                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'podcast' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                        onClick={() => setType('podcast')}
-                    >PodCast</button>
-                    <button
-                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'artigo' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                        onClick={() => setType('artigo')}
-                    >Artigos</button>
-                    <button
-                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'video' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                        onClick={() => setType('video')}
-                    >Videos</button>
-                    <button
-                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'modules' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                        onClick={() => setType('modules')}
-                    >Módulos</button>
-                </div>
+            <div
+                className="mx-auto flex md:flex-row flex-wrap w-full items-center justify-center py-3"
+            >
+                <button
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'todos' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('todos')}
+                >Todos</button>
+                <button
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'podcast' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('podcast')}
+                >PodCast</button>
+                <button
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'artigo' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('artigo')}
+                >Artigos</button>
+                <button
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'video' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('video')}
+                >Videos</button>
+                <button
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'modules' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('modules')}
+                >Módulos</button>
+            </div>
         </header>
         <section
             className='flex mt-4 ml-1 mr-1 space-x-1'
