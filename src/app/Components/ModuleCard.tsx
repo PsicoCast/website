@@ -8,24 +8,27 @@ export default function ModuleCard({ module }: any) {
   return (
     <div className="grid grid-cols-1 gap-4">
       <h1 className="text-4xl font-extrabold text-center font-sans text-[#243A77] mt-5 mb-3 bg-gray-200 p-2">{module.title}</h1>
-      {module.contents && (module.contents).map((contents: any) => {
+      {module.contents && (module.contents).map((contents: any, index: number) => {
         if (contents.type === 'podcast') {
           return (
-          <div>
-            <PodcastCard info={contents} />
-          </div>)
+            <div key={index}>
+              <PodcastCard info={contents} />
+            </div>
+          );
         } else if (contents.type === 'video') {
           return (
-            <div>
+            <div key={index}>
               <VideoCard info={contents} />
-            </div>)
+            </div>
+          );
         } else if (contents.type === 'artigo') {
           return (
-            <div>
+            <div key={index}>
               <ArticleCard info={contents} />
-            </div>)
+            </div>
+          );
         } else {
-          return null; 
+          return null;
         }
       })}
     </div>
