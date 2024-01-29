@@ -13,8 +13,8 @@ export default function RootLayout({
 }) {
 
   return (
-      <>
+      <html>
         <body className={`${roboto.className} antialiased`}>{children}</body>
-      </>
+      </html>
   );
 }

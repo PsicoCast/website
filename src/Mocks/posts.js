@@ -2,7 +2,7 @@ export const mockArray = [
   {
     type: 'video',
     title: 'Human Marketing Architect',
-    text: 'Error ipsam quis architecto corrupti et. Dolor labore praesentium doloribus. Soluta aliquam aut consequuntur in magni qui suscipit sit. Qui dolor dolores sapiente voluptates sed. Quia voluptatem tempore. Vel sapiente odit aliquam molestias voluptatibus ea voluptatem sequi omnis.',
+    text: 'video',
     link: 'https://carmella.org',
     thumb: 'https://pe.unit.br/wp-content/uploads/2017/11/Psicologia.png',
     category: 'Slovenia',
@@ -29,7 +29,67 @@ export const mockArray = [
   {
     type: 'artigo',
     title: 'Product Security Representative',
-    text: 'Eveniet blanditiis sapiente ea enim id sunt sit. Ut cupiditate aut nobis voluptates non sapiente. Quia ea dolor. Officiis error illo nostrum repellat.',
+    text: `Error ipsam quis architecto corrupti et.
+  Dolor labore praesentium doloribus.
+  Soluta aliquam aut consequuntur in magni qui suscipit sit.
+  Qui dolor dolores sapiente voluptates sed.
+  Quia voluptatem tempore.
+  Vel sapiente odit aliquam molestias voluptatibus ea voluptatem sequi omnis.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+  Fusce vitae elit vel quam malesuada dignissim a vel libero.
+  Etiam nec nunc vitae elit iaculis iaculis ac ac turpis.
+  Donec vel metus ut tellus scelerisque placerat ac vitae lectus.
+  Nullam vitae tellus eu quam dictum accumsan vel et purus.
+  In hac habitasse platea dictumst.
+  Curabitur id sapien sit amet elit imperdiet volutpat.
+  Integer id ante nec neque laoreet pharetra id sit amet risus.
+  Pellentesque auctor justo id velit lobortis, sit amet euismod neque pellentesque.
+  Sed efficitur, purus non varius lacinia, nunc lectus vestibulum felis, sit amet consectetur neque augue a sem.
+  Duis dapibus luctus nunc, et posuere eros gravida vitae.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  Nam sit amet tellus in sem efficitur ultricies.
+  `,
     link: 'http://casimir.biz',
     thumb: 'https://pe.unit.br/wp-content/uploads/2017/11/Psicologia.png',
     category: 'Infrastructure',
