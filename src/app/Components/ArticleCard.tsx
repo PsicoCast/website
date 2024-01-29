@@ -46,7 +46,10 @@ export default function ArticleCards({ info }: ArticleProps) {
   } */
 
     return (
-      <div className="border p-4 rounded-lg">
+      <div 
+      // className="border p-4 rounded-lg"
+        className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
+      >
         {info.thumb ? 
         (<div className="w-full h-32 relative mb-2">
           <Image src={info.thumb} alt={info.title} layout="fill" objectFit="contain"/>
