@@ -2,6 +2,7 @@ import { mockArray } from './posts';
 
 export const modulesMocks = [
     {
+        id: 1,
         title: 'Modulo 1',
         contents: [
             mockArray[0],
@@ -10,6 +11,7 @@ export const modulesMocks = [
         ]
     },
 {
+        id: 2,
         title: 'Modulo 2',
         contents: [
             mockArray[4],
@@ -17,6 +19,7 @@ export const modulesMocks = [
         ]
     },
    {
+        id: 3,
         title: 'Modulo 3',
         contents: [
             mockArray[6],
