@@ -3,6 +3,7 @@ import { useState } from "react";
 import AllCardsList from "./Components/AllCardsList";
 import ModulesList from "./Components/ModulesList";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import Image from 'next/image';
 
 const sectionButtons = 'text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700';
 
@@ -15,14 +16,14 @@ export default function Page() {
  
   return (
     <main 
-        // className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4"
     >
         <header
-            // className="w-full bg-gray-100 dark:bg-gray-900 border border-black rounded-lg"
-            // className="md:w-1/2 lg:w-1/2 xl:w-full bg-gray-100 dark:bg-gray-900 border border-black rounded-lg"
             className="w-full bg-gray-100 dark:bg-gray-900 border border-black rounded-lg"
             
     >
+        <div className="absolute top-2 left-2 w-16 h-16">
+            <Image src="/logo.png" alt="Logo" layout="fill" objectFit="contain"/>
+        </div>
             <div
             className="flex justify-center items-center mt-3 py-3"
         >
@@ -37,76 +38,30 @@ export default function Page() {
                 />
             </label>
             </div>
-            {/* <div
-                className="flex flex-row md:flex-col flex-wrap justify-center items-center w-full"
-            > */}
                 <div
-                    // className="md:w-1/2 mx-auto flex flex-col md:flex-row flex-wrap w-full items-center justify-center py-3"
+
                     className="mx-auto flex md:flex-row flex-wrap w-full items-center justify-center py-3"
                 >
-
-                    <label
-                        className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
-                    >
-                        <span className="mr-2">Todos</span>
-                        <input
-                            className="px-3 py-2 border rounded-md focus:outline-none text-lg"
-                            type="radio"
-                            name="search-type"
-                            value="todos"
-                            defaultChecked={true}
-                            onChange={(e) => setType(e.target.value)}
-                        />
-                    </label>
-                    <label
-                        className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
-                    >
-                        <span className="mr-2">Podcast</span>
-                        <input
-                            className="px-3 py-2 border rounded-md focus:outline-none text-lg"
-                            type="radio"
-                            name="search-type"
-                            value="podcast"
-                            onChange={(e) => setType(e.target.value)}
-                        />
-                    </label>
-                    <label
-                        className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
-                        >
-                        <span className="mr-2">Artigos</span>
-                        <input
-                            className="px-3 py-2 border rounded-md focus:outline-none text-lg"
-                            type="radio"
-                            name="search-type"
-                            value="artigo"
-                            onChange={(e) => setType(e.target.value)}
-                        />
-                    </label>
-                    <label
-                        className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
-                    >
-                        <span className="mr-2">Vídeos</span>
-                        <input
-                            className="px-3 py-2 border rounded-md focus:outline-none text-lg"
-                            type="radio"
-                            name="search-type"
-                            value="video"
-                            onChange={(e) => setType(e.target.value)}
-                        />
-                    </label>
-                    <label
-                        className="ml-4 px-3 py-2 border rounded-md focus:outline-none text-lg"
-                    >
-                        <span className="mr-2">Módulos</span>
-                        <input
-                            className="px-3 py-2 border rounded-md focus:outline-none text-lg"
-                            type="radio"
-                            name="search-type"
-                            value="modules"
-                            onChange={(e) => setType(e.target.value)}
-                        />
-                    </label>
-
+                    <button
+                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'todos' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                        onClick={() => setType('todos')}
+                    >Todos</button>
+                    <button
+                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'podcast' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                        onClick={() => setType('podcast')}
+                    >PodCast</button>
+                    <button
+                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'artigo' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                        onClick={() => setType('artigo')}
+                    >Artigos</button>
+                    <button
+                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'video' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                        onClick={() => setType('video')}
+                    >Videos</button>
+                    <button
+                        className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'modules' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                        onClick={() => setType('modules')}
+                    >Módulos</button>
                 </div>
         </header>
         <section
