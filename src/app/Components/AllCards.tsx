@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from 'react';
 import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
