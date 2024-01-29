@@ -66,7 +66,7 @@ export default function Page() {
                             className="px-3 py-2 border rounded-md focus:outline-none text-lg"
                             type="radio"
                             name="search-type"
-                            value="podcasts"
+                            value="podcast"
                             onChange={(e) => setType(e.target.value)}
                         />
                     </label>
@@ -78,7 +78,7 @@ export default function Page() {
                             className="px-3 py-2 border rounded-md focus:outline-none text-lg"
                             type="radio"
                             name="search-type"
-                            value="artigos"
+                            value="artigo"
                             onChange={(e) => setType(e.target.value)}
                         />
                     </label>
@@ -90,7 +90,7 @@ export default function Page() {
                             className="px-3 py-2 border rounded-md focus:outline-none text-lg"
                             type="radio"
                             name="search-type"
-                            value="videos"
+                            value="video"
                             onChange={(e) => setType(e.target.value)}
                         />
                     </label>

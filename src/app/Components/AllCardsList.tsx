@@ -44,22 +44,35 @@ export default function AllCardsList({search, type}: {search: string, type:strin
 
   console.log(posts[0].type)
 
-
-
+  if (type === 'todos') {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {posts && posts
           .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
           .map((post, index) => (
             <div key={index}>
-              {type === 'todos' && post.type === 'podcast' && <PodcastCard info={post} key={index} />}
-              {type === 'todos' && post.type === 'video' && <VideoCard info={post} key={index} />}
-              {type === 'todos' && post.type === 'artigo' && <ArticleCard info={post} key={index} />}
-              {type === 'podcasts' && <PodcastCard info={post} key={index} />}
-              {type === 'videos' && <VideoCard info={post} key={index} />}
-              {type === 'artigos' && <ArticleCard info={post} key={index} />}              
+              {post.type === 'podcast' && <PodcastCard info={post} key={index} />}
+              {post.type === 'video' && <VideoCard info={post} key={index} />}
+              {post.type === 'artigo' && <ArticleCard info={post} key={index} />}           
             </div>
           ))}
       </div>
     );
+  } else if (type === 'video' || type === 'podcast' || type === 'artigo') {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {posts && posts
+          .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+          .filter(post => post.type === type)
+          .map((post, index) => (
+            <div key={index}>
+              {post.type === 'podcast' && <PodcastCard info={post} key={index} />}
+              {post.type === 'video' && <VideoCard info={post} key={index} />}
+              {post.type === 'artigo' && <ArticleCard info={post} key={index} />}        
+            </div>
+          ))}
+      </div>
+    );
+  }
+
 }
