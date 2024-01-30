@@ -93,17 +93,30 @@ export default function ArticleCards({ info }: ArticleProps) {
         <div 
         className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
       >
-        <form>
-          <input type="text" value={info.title} />
-          <input type="text" value={info.text} />
-          <input type="text" value={info.link} />
-          <input type="text" value={info.thumb} />
-          <input type="text" value={info.category} />
-          <input type="text" value={info.createdAt.toLocaleDateString()} />
-          <button
+      <form className="space-y-1">
+        <label className="block">
+          Título:
+          <input type="text" value={info.title} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+        </label>
+        <label className="block">
+          Texto:
+          <input type="text" value={info.text} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+        </label>
+        <label className="block">
+          Link:
+          <input type="text" value={info.link} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+        </label>
+        <label className="block">
+          Thumb:
+          <input type="text" value={info.thumb} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+        </label>
+        <button
           onClick={() => setIsEdit(false)}
-          >Salvar</button>
-        </form>
+          className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+        >
+          Salvar
+        </button>
+      </form>
       </div>
       ) : (
       <div 
@@ -137,8 +150,11 @@ export default function ArticleCards({ info }: ArticleProps) {
     }
    <button
     onClick={() => setIsEdit(true)}
+    className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
    >Editar</button>
-   <button>Deletar</button>
+   <button
+    className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+   >Deletar</button>
    </div>
     ))
 }

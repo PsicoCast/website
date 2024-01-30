@@ -71,21 +71,10 @@ export default function VideoCard({ info }: VideoProps) {
         <form>
           <label htmlFor="title">Título</label>
           <input type="text" id="title" name="title" defaultValue={info.title} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"/>
-          <label htmlFor="thumb">Link da imagem</label>
+          <label htmlFor="thumb">Thumb:</label>
           <input type="text" id="thumb" name="thumb" defaultValue={info.thumb} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"/>
           <label htmlFor="link">Link do vídeo</label>
           <input type="text" id="link" name="link" defaultValue={info.link} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"/>
-          <label htmlFor="category">Categoria</label>
-          <select name="category" id="category" defaultValue={info.category} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full">
-            <option value="todos">Todos</option>
-            <option value="saude">Saúde</option>
-            <option value="educacao">Educação</option>
-            <option value="politica">Política</option>
-            <option value="economia">Economia</option>
-            <option value="tecnologia">Tecnologia</option>
-            <option value="cultura">Cultura</option>
-            <option value="outros">Outros</option>
-          </select>
           <label htmlFor="text">Descrição</label>
           <textarea name="text" id="text" defaultValue={info.text} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt
           -4 w-full"/>
@@ -108,9 +97,12 @@ export default function VideoCard({ info }: VideoProps) {
     {/*<p>{post.description}</p>*/}
     <a href={info.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
     <button
-     onClick={() => setIsEdit(true)}
-    >Editar</button>
-    <button>Deletar</button>
+        onClick={() => setIsEdit(true)}
+        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+      >Editar</button>
+      <button
+        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+      >Deletar</button>
   </div>
   ))  
 }
