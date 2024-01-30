@@ -23,6 +23,7 @@ export default function ArticleCards({ info }: ArticleProps) {
   const [ articleContent, setArticleContent ] = useState(false);
   const [ isAdm, setIsAdm ] = useState(false);
   const [ isEdit, setIsEdit ] = useState(false);
+
   const path = usePathname();
 
   useEffect(() => {
@@ -76,6 +77,7 @@ export default function ArticleCards({ info }: ArticleProps) {
             onClick={() => {
               setArticleContent(false)
             }}
+            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
           >Fechar Artigo</button>
         </div>
       :
@@ -84,6 +86,7 @@ export default function ArticleCards({ info }: ArticleProps) {
             onClick={() => {
               setArticleContent(true)
             }}
+            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
           >Veja o Artigo</button>
         </div>
       }
@@ -100,7 +103,7 @@ export default function ArticleCards({ info }: ArticleProps) {
         </label>
         <label className="block">
           Texto:
-          <input type="text" value={info.text} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+          <textarea value={info.text} rows={10} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
         </label>
         <label className="block">
           Link:
@@ -137,6 +140,7 @@ export default function ArticleCards({ info }: ArticleProps) {
           onClick={() => {
             setArticleContent(false)
           }}
+          className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
         >Fechar Artigo</button>
       </div>
     :
@@ -145,6 +149,7 @@ export default function ArticleCards({ info }: ArticleProps) {
           onClick={() => {
             setArticleContent(true)
           }}
+          className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
         >Veja o Artigo</button>
       </div>
     }

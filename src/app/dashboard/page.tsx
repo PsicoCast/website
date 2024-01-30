@@ -7,9 +7,9 @@ import Image from 'next/image';
 export default function DashBoard() {
     const [ isAdm, setIsAdm ] = useState(false);
     const [ userInput, setUserInput ] = useState('');
-    const [ addPodcast, setAddPodcast ] = useState(false);
-    const [ addVideo, setAddVideo ] = useState(false);
-    const [ addArticle, setAddArticle ] = useState(false);
+    // const [ addPodcast, setAddPodcast ] = useState(false);
+    // const [ addVideo, setAddVideo ] = useState(false);
+    // const [ addArticle, setAddArticle ] = useState(false);
     const [ search, setSearch ] = useState('');
     const [ type, setType ] = useState('todos');
     const pass = '123';

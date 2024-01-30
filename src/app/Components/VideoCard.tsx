@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 interface InfoProps {
@@ -68,15 +68,38 @@ export default function VideoCard({ info }: VideoProps) {
     isEdit ? (
       <div className="border p-4 rounded-lg">
         <h1>Editar {info.type}</h1>
-        <form>
-          <label htmlFor="title">Título</label>
-          <input type="text" id="title" name="title" defaultValue={info.title} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"/>
-          <label htmlFor="thumb">Thumb:</label>
-          <input type="text" id="thumb" name="thumb" defaultValue={info.thumb} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"/>
-          <label htmlFor="link">Link do vídeo</label>
-          <input type="text" id="link" name="link" defaultValue={info.link} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"/>
-          <label htmlFor="text">Descrição</label>
-          <textarea name="text" id="text" defaultValue={info.text} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt
+        <form className="space-y-4">
+          <label 
+            className="block"
+            htmlFor="title">Título</label>
+          <input 
+            type="text" 
+            id="title" 
+            name="title" 
+            defaultValue={info.title} 
+            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"/>
+          <label 
+            className="block"
+            htmlFor="thumb">Thumb:</label>
+          <input 
+            type="text" 
+            id="thumb" 
+            name="thumb" 
+            defaultValue={info.thumb} 
+            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"/>
+          <label 
+            className="block"
+            htmlFor="link">Link do vídeo</label>
+          <input 
+            type="text" 
+            id="link" 
+            name="link" 
+            defaultValue={info.link} 
+            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"/>
+          <label 
+            className="block"
+            htmlFor="text">Descrição</label>
+          <textarea name="text" rows={10} id="text" defaultValue={info.text} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt
           -4 w-full"/>
           <button
             onClick={() => setIsEdit(false)}
