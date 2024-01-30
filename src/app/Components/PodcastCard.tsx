@@ -1,5 +1,6 @@
-import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from "react";
 
 interface InfoProps {
   type: string,
@@ -16,7 +17,15 @@ type PodcastCardProps = {
 }
 
 export default function PodcastCard ({ info }: PodcastCardProps) {
-  
+
+  const [ isAdm, setIsAdm ] = useState(false);
+  const [ isEdit, setIsEdit ] = useState(false);
+  const path = usePathname();
+
+  useEffect(() => {
+    path === '/dashboard' ? setIsAdm(true) : setIsAdm(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 //  /*  const serializedPosts = localStorage.getItem('posts'); */
 //   let deserializedPosts;
 //   let filteredPosts;
@@ -43,7 +52,7 @@ export default function PodcastCard ({ info }: PodcastCardProps) {
     post.text.toLowerCase().includes(search.toLowerCase())));
   }  */
 
-  return (
+  return !isAdm ? (
       <div className="border p-4 rounded-lg">
         {info.thumb ? 
         <div className="w-full h-32 relative mb-2">
@@ -56,6 +65,54 @@ export default function PodcastCard ({ info }: PodcastCardProps) {
         {/*<p>{info.description}</p>*/}
         <a href={info.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
       </div>
-    )}
+    ) : (
+      isEdit ? (
+        <div className="border p-4 rounded-lg">
+          <form className="space-y-4">
+            <label className="block">
+              Título:
+              <input type="text" value={info.title} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+            </label>
+            <label className="block">
+              Descrição:
+              <input type="text" value={info.text} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+            </label>
+            <label className="block">
+              Link:
+              <input type="text" value={info.link} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+            </label>
+            <label className="block">
+              Thumb:
+              <input type="text" value={info.thumb} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+            </label>
+            <button
+              onClick={() => setIsEdit(false)}
+              className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+            >
+              Salvar
+            </button>
+          </form>
+        </div>
+      ) : (
+      <div className="border p-4 rounded-lg">
+      {info.thumb ? 
+      <div className="w-full h-32 relative mb-2">
+        <Image src={info.thumb} alt={info.title} layout="fill" objectFit="contain"/>
+      </div> 
+      : null}
+      <h1>{info.type}</h1>
+      <h2 className="text-xl font-bold">{info.title}</h2>
+      <p>Postado em {info.createdAt.toLocaleDateString()}</p>
+      {/*<p>{info.description}</p>*/}
+      <a href={info.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
+      <button
+        onClick={() => setIsEdit(true)}
+        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+      >Editar</button>
+      <button
+        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+      >Deletar</button>
+    </div>
+    ))}
 
   
