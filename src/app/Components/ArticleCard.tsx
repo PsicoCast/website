@@ -89,6 +89,23 @@ export default function ArticleCards({ info }: ArticleProps) {
       }
      </div>
     ) : (
+      isEdit ? (
+        <div 
+        className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
+      >
+        <form>
+          <input type="text" value={info.title} />
+          <input type="text" value={info.text} />
+          <input type="text" value={info.link} />
+          <input type="text" value={info.thumb} />
+          <input type="text" value={info.category} />
+          <input type="text" value={info.createdAt.toLocaleDateString()} />
+          <button
+          onClick={() => setIsEdit(false)}
+          >Salvar</button>
+        </form>
+      </div>
+      ) : (
       <div 
       className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
     >
@@ -118,9 +135,11 @@ export default function ArticleCards({ info }: ArticleProps) {
         >Veja o Artigo</button>
       </div>
     }
-   <button>Editar</button>
+   <button
+    onClick={() => setIsEdit(true)}
+   >Editar</button>
    <button>Deletar</button>
    </div>
-    )
+    ))
 }
 
