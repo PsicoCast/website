@@ -112,46 +112,7 @@ export default function DashBoard() {
             <article
                 className="w-full border border-black rounded-lg"
             >
-            {addVideo && (
-            <div className="fixed z-10 inset-0 overflow-y-auto">
-                <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div className="fixed inset-0 transition-opacity" aria-hidden="true">
-                    <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-                </div>
-                <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-                <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                    <div className="border p-4 rounded-lg">
-                    <h1 className="text-2xl">Adicionar Vídeo</h1>
-                    <form className="space-y-4">
-                        <label className="block">
-                        Título:
-                        <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
-                        </label>
-                        <label className="block">
-                        Descrição:
-                        <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
-                        </label>
-                        <label className="block">
-                        Link:
-                        <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
-                        </label>
-                        <label className="block">
-                        Thumb:
-                        <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
-                        </label>
-                        <button
-                        onClick={() => setAddVideo(false)}
-                        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
-                        >
-                        Adicionar
-                        </button>
-                    </form>
-                    </div>
-                </div>
-                </div>
-            </div>
-            )}
-            {addPodcast && (
+                {addVideo && (
                 <div className="fixed z-10 inset-0 overflow-y-auto">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                     <div className="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -160,37 +121,75 @@ export default function DashBoard() {
                     <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
                     <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                         <div className="border p-4 rounded-lg">
-                        <h1 className="text-2xl">Adicionar Podcast</h1>
+                        <h1 className="text-2xl">Adicionar Vídeo</h1>
                         <form className="space-y-4">
-                        <label className="block">
-                        Título:
-                        <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
-                        </label>
-                        <label className="block">
-                        Descrição:
-                        <input type="text"  className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
-                        </label>
-                        <label className="block">
-                        Link:
-                        <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
-                        </label>
-                        <label className="block">
-                        Thumb:
-                        <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
-                        </label>
+                            <label className="block">
+                            Título:
+                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            </label>
+                            <label className="block">
+                            Descrição:
+                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            </label>
+                            <label className="block">
+                            Link:
+                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            </label>
+                            <label className="block">
+                            Thumb:
+                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            </label>
                             <button
-                            onClick={() => setAddPodcast(false)}
+                            onClick={() => setAddVideo(false)}
                             className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                             >
-                            Salvar
+                            Adicionar
                             </button>
                         </form>
                         </div>
                     </div>
                     </div>
                 </div>
-                )}
-
+                    )}
+                {addPodcast && (
+                    <div className="fixed z-10 inset-0 overflow-y-auto">
+                        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                        <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+                            <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                        </div>
+                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            <div className="border p-4 rounded-lg">
+                            <h1 className="text-2xl">Adicionar Podcast</h1>
+                            <form className="space-y-4">
+                            <label className="block">
+                            Título:
+                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            </label>
+                            <label className="block">
+                            Descrição:
+                            <input type="text"  className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            </label>
+                            <label className="block">
+                            Link:
+                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            </label>
+                            <label className="block">
+                            Thumb:
+                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            </label>
+                                <button
+                                onClick={() => setAddPodcast(false)}
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+                                >
+                                Salvar
+                                </button>
+                            </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    )}
                 {addArticle && (
                 <div className="fixed z-10 inset-0 overflow-y-auto">
                     <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -229,9 +228,9 @@ export default function DashBoard() {
                     </div>
                     </div>
                 </div>
-                )}
-              {type !== 'modules' && <AllCardsList search={search} type={type} />}
-              {type === 'modules' && <ModulesList />} 
+                    )}
+                {type !== 'modules' && <AllCardsList search={search} type={type} />}
+                {type === 'modules' && <ModulesList />} 
             </article>
         </section>
     </main>
