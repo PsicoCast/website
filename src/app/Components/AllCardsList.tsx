@@ -21,29 +21,29 @@ export default function AllCardsList({search, type}: {search: string, type:strin
     // });  
     // localStorage.setItem('posts', serializedPosts);
     const posts = mockArray;
-    // let filteredPosts;
+    let filteredPosts;
   
-    // if (type === 'todos') {
-    //   filteredPosts = posts.filter(post => 
-    //     search === '' || 
-    //     post.title.toLowerCase().includes(search.toLowerCase()) || 
-    //     post.text.toLowerCase().includes(search.toLowerCase())
-    //   );
-    //   // setPosts(filteredPosts);
-    // } else if (type === 'videos' || type === 'podcasts' || type === 'artigos') {
-    //   filteredPosts = posts.filter(post => 
-    //     post.type === type && 
-    //     (post.title.toLowerCase().includes(search.toLowerCase()) || 
-    //     post.text.toLowerCase().includes(search.toLowerCase()))
-    //   );
-    //   // setPosts(filteredPosts);
-    // }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (type === 'todos') {
+      filteredPosts = posts.filter(post => 
+        search === '' || 
+        post.title.toLowerCase().includes(search.toLowerCase()) || 
+        post.text.toLowerCase().includes(search.toLowerCase())
+      );
+      // setPosts(filteredPosts);
+    } else if (type === 'videos' || type === 'podcasts' || type === 'artigos') {
+      filteredPosts = posts.filter(post => 
+        post.type === type && 
+        (post.title.toLowerCase().includes(search.toLowerCase()) || 
+        post.text.toLowerCase().includes(search.toLowerCase()))
+      );
+      // setPosts(filteredPosts);
+    }
+
 
   if (type === 'todos') {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {posts && posts
+        {filteredPosts && filteredPosts
           .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
           .map((post, index) => (
             <div key={index}>

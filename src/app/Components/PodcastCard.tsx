@@ -1,5 +1,5 @@
-import { mockArray } from '../../Mocks/posts';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation'
 
 interface InfoProps {
   type: string,
@@ -16,7 +16,7 @@ type PodcastCardProps = {
 }
 
 export default function PodcastCard ({ info }: PodcastCardProps) {
-  
+  const path = usePathname();
 //  /*  const serializedPosts = localStorage.getItem('posts'); */
 //   let deserializedPosts;
 //   let filteredPosts;

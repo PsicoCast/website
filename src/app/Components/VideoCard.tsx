@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { usePathname } from 'next/navigation'
 
 interface InfoProps {
   type: string,
@@ -16,7 +17,7 @@ type VideoProps = {
 
 
 export default function VideoCard({ info }: VideoProps) {
-
+  const path = usePathname();
 /*   const serializedPosts = localStorage.getItem('posts'); */
   // let deserializedPosts;
   // let filteredPosts;

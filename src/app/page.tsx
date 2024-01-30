@@ -10,8 +10,6 @@ const sectionButtons = 'text-white bg-gray-800 hover:bg-gray-900 focus:outline-n
 export default function Page() {
   const [ search, setSearch ] = useState('');
   const [ type, setType ] = useState('todos');
-  
-  const useEffect = () => {}
 
  
   return (
