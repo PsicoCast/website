@@ -121,6 +121,7 @@ export default function DashBoard() {
                 <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
                 <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                     <div className="border p-4 rounded-lg">
+                    <h1 className="text-2xl">Adicionar Vídeo</h1>
                     <form className="space-y-4">
                         <label className="block">
                         Título:
@@ -159,6 +160,7 @@ export default function DashBoard() {
                     <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
                     <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                         <div className="border p-4 rounded-lg">
+                        <h1 className="text-2xl">Adicionar Podcast</h1>
                         <form className="space-y-4">
                         <label className="block">
                         Título:
@@ -198,6 +200,7 @@ export default function DashBoard() {
                     <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
                     <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                         <div className="border p-4 rounded-lg">
+                        <h1 className="text-2xl">Adicionar Artigo</h1>
                         <form className="space-y-4">
                         <label className="block">
                             Título:
