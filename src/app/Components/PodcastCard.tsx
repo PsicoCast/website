@@ -12,11 +12,8 @@ interface InfoProps {
   createdAt: Date
 }
 
-type PodcastCardProps = {
-  info: InfoProps;
-}
 
-export default function PodcastCard ({ info }: PodcastCardProps) {
+export default function PodcastCard ({ info, isModuleEdit, moduleToAdd }: {info: InfoProps, isModuleEdit: boolean, moduleToAdd: number}) {
 
   const [ isAdm, setIsAdm ] = useState(false);
   const [ isEdit, setIsEdit ] = useState(false);
@@ -115,13 +112,24 @@ export default function PodcastCard ({ info }: PodcastCardProps) {
         onClick={() => handleAcessContent(info.link)}
         className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
       >Acessar Conteúdo</button>
-      <button
+    {!isModuleEdit ? (
+      <>
+        <button
         onClick={() => setIsEdit(true)}
         className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
-      >Editar</button>
-      <button
+        >Editar</button>
+        <button
         className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
-      >Deletar</button>
+        >Deletar</button>
+      </>      
+      ) : (
+        <>
+        <button
+          onClick={() => alert(`${info.title} adicionado ao módulo ${moduleToAdd}`)}
+          className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+        >Adicionar Conteúdo ao Módulo</button>
+        </>
+      )}
     </div>
     ))}
 

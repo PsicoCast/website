@@ -10,6 +10,7 @@ export default function DashBoard() {
     const [ addPodcast, setAddPodcast ] = useState(false);
     const [ addVideo, setAddVideo ] = useState(false);
     const [ addArticle, setAddArticle ] = useState(false);
+    const [ addModule, setAddModule ] = useState(false);
     const [ search, setSearch ] = useState('');
     const [ type, setType ] = useState('todos');
 
@@ -109,6 +110,7 @@ export default function DashBoard() {
                 className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white mb-4"
                 >Adicionar Vídeo</button>
             <button 
+                onClick={() => setAddModule(true)}
                 className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white mb-4"
                 >Adicionar Módulo</button>
         </div>
@@ -235,7 +237,44 @@ export default function DashBoard() {
                     </div>
                 </div>
                     )}
-                {type !== 'modules' && <AllCardsList search={search} type={type} />}
+                {addModule && (
+                <div className="fixed z-10 inset-0 overflow-y-auto">
+                    <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+                        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                    </div>
+                    <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                    <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                        <div className="border p-4 rounded-lg">
+                        <h1 className="text-2xl">Adicionar Módulo</h1>
+                        <div className="space-y-4">
+                            <label className="block">
+                            Título:
+                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+                            </label>
+                            <h1 className="text-2xl">Procure pelo conteúdo</h1>
+                            <input 
+                                type='text' 
+                                value={search} 
+                                onChange={(e) => setSearch(e.target.value)}
+                                className="w-full px-3 py-2 mt-4 border border-yellow-500 rounded-md focus:outline-none" 
+                                placeholder='Procure o conteúdo a ser adicionado'
+                            />
+                            <button
+                            onClick={() => setAddModule(false)}
+                            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+                            >
+                            Salvar
+                            </button>
+                            <AllCardsList search={search} type={'todos'} isModuleEdit={true} moduleToAdd={-1}/>
+
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                )}
+                {type !== 'modules' && <AllCardsList search={search} type={type} isModuleEdit={false} moduleToAdd={0}/>}
                 {type === 'modules' && <ModulesList />} 
             </article>
         </section>

@@ -13,13 +13,8 @@ interface InfoProps {
   createdAt: Date
 }
 
-type ArticleProps = {
-  info: InfoProps;
-}
 
-
-
-export default function ArticleCards({ info }: ArticleProps) {
+export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info: InfoProps, isModuleEdit: boolean, moduleToAdd: number}) {
   const [ articleContent, setArticleContent ] = useState(false);
   const [ isAdm, setIsAdm ] = useState(false);
   const [ isEdit, setIsEdit ] = useState(false);
@@ -152,14 +147,25 @@ export default function ArticleCards({ info }: ArticleProps) {
         >Veja o Artigo</button>
       </div>
     }
-   <button
-    onClick={() => setIsEdit(true)}
-    className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
-   >Editar</button>
-   <button
-    className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
-   >Deletar</button>
-   </div>
+    {(!isModuleEdit) ? (
+      <>
+        <button
+        onClick={() => setIsEdit(true)}
+        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+        >Editar</button>
+        <button
+        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+        >Deletar</button>
+      </>      
+      ) : (
+        <>
+        <button
+          onClick={() => alert(`${info.title} adicionado ao módulo ${moduleToAdd}`)}
+          className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+        >Adicionar Conteúdo ao Módulo</button>
+        </>
+      )}
+      </div>
     ))
 }
 

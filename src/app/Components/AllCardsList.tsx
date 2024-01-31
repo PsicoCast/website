@@ -5,7 +5,7 @@ import PodcastCard from './PodcastCard';
 import VideoCard from './VideoCard';
 import ArticleCard from './ArticleCard';
 
-export default function AllCardsList({search, type}: {search: string, type:string}) {
+export default function AllCardsList({search, type, isModuleEdit, moduleToAdd}: {search: string, type:string, isModuleEdit: boolean, moduleToAdd: number}) {
 
   // const [posts, setPosts] = useState(mockArray);
 
@@ -46,9 +46,9 @@ export default function AllCardsList({search, type}: {search: string, type:strin
           .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
           .map((post, index) => (
             <div key={index}>
-              {post.type === 'podcast' && <PodcastCard info={post} key={index} />}
-              {post.type === 'video' && <VideoCard info={post} key={index} />}
-              {post.type === 'artigo' && <ArticleCard info={post} key={index} />}      
+              {post.type === 'podcast' && <PodcastCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+              {post.type === 'video' && <VideoCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+              {post.type === 'artigo' && <ArticleCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}      
             </div>
           ))}
       </div>
@@ -61,9 +61,9 @@ export default function AllCardsList({search, type}: {search: string, type:strin
           .filter(post => post.type === type)
           .map((post, index) => (
             <div key={index}>
-              {post.type === 'podcast' && <PodcastCard info={post} key={index} />}
-              {post.type === 'video' && <VideoCard info={post} key={index} />}
-              {post.type === 'artigo' && <ArticleCard info={post} key={index} />}        
+              {post.type === 'podcast' && <PodcastCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+              {post.type === 'video' && <VideoCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+              {post.type === 'artigo' && <ArticleCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}        
             </div>
           ))}
       </div>
