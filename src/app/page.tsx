@@ -22,7 +22,8 @@ export default function Page() {
     // className="flex flex-col items-center justify-center border-2 border-yellow-500 shadow-md p-4 rounded max-w-md mx-auto mt-8 mb-4"
     >
     <main 
-        className="w-[80vw] h-full"
+        // className="w-[80vw] h-full"
+        className="w-[80vw] max-w-screen-xl h-full mx-auto"
     >
         <div className="flex justify-center items-center w-full mb-3">
             <div className="w-16 h-16 md:w-16 md:h-16 flex-shrink-0">
