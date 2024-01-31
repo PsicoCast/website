@@ -103,19 +103,19 @@ export default function DashBoard() {
         <div className="flex flex-wrap justify-around items-center w-full bg-gray-100 dark:bg-gray-900 border border-black rounded-lg mt-4 p-4">
             <button 
                 onClick={() => setAddArticle(true)}
-                className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white mb-4"
+                className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                 >Adicionar Artigo</button>
             <button 
                 onClick={() => setAddPodcast(true)}
-                className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white mb-4"
+                className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                 >Adicionar PodCast</button>
             <button 
                 onClick={() => setAddVideo(true)}
-                className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white mb-4"
+                className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                 >Adicionar Vídeo</button>
             <button 
                 onClick={() => setAddModule(true)}
-                className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white mb-4"
+                className="px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                 >Adicionar Módulo</button>
         </div>
         <section
