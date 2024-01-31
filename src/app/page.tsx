@@ -14,7 +14,7 @@ export default function Page() {
  
   return (
     <div 
-    className="flex flex-col items-center justify-center shadow-md p-4 rounded max-w-full mx-auto mt-8 mb-4"
+    className="min-h-screen flex flex-col items-center justify-center shadow-md p-4 rounded max-w-full mx-auto mt-8 mb-4"
     // style={{
     //     background: "radial-gradient(circle at center, #d25e2d, #ffb700, #140621)",
     //     backgroundAttachment: 'fixed',
@@ -23,7 +23,9 @@ export default function Page() {
     //   }}
     // className="flex flex-col items-center justify-center border-2 border-yellow-500 shadow-md p-4 rounded max-w-md mx-auto mt-8 mb-4"
     >
+        <h1 className='text-4xl'> PsicoCast - Slogan </h1>
     <main 
+        className=" w-[80vw] h-full overflow-auto"
     >
             <header
             className="w-full bg-gray-300 dark:bg-gray-900 border border-black rounded-lg flex flex-col items-center justify-center"

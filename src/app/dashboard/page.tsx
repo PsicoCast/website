@@ -51,6 +51,7 @@ export default function DashBoard() {
         >
           <p className="text-center text-2xl mb-3">Bem vindo ao painel de administração do PsicoCast!</p>
           <main 
+          className=" w-[80vw] h-full overflow-auto"
     >
           <header
             className="w-full bg-gray-300 border border-black rounded-lg flex flex-col items-center justify-center"
@@ -252,22 +253,12 @@ export default function DashBoard() {
                             Título:
                             <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
                             </label>
-                            <h1 className="text-2xl">Procure pelo conteúdo</h1>
-                            <input 
-                                type='text' 
-                                value={search} 
-                                onChange={(e) => setSearch(e.target.value)}
-                                className="w-full px-3 py-2 mt-4 border border-yellow-500 rounded-md focus:outline-none" 
-                                placeholder='Procure o conteúdo a ser adicionado'
-                            />
                             <button
                             onClick={() => setAddModule(false)}
                             className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                             >
                             Salvar
                             </button>
-                            <AllCardsList search={search} type={'todos'} isModuleEdit={true} moduleToAdd={-1}/>
-
                         </div>
                         </div>
                     </div>
