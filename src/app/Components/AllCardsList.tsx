@@ -5,7 +5,7 @@ import PodcastCard from './PodcastCard';
 import VideoCard from './VideoCard';
 import ArticleCard from './ArticleCard';
 
-export default function AllCardsList({search, type}: {search: string, type:string}) {
+export default function AllCardsList({search, type, isModuleEdit, moduleToAdd}: {search: string, type:string, isModuleEdit: boolean, moduleToAdd: number}) {
 
   // const [posts, setPosts] = useState(mockArray);
 
@@ -20,36 +20,35 @@ export default function AllCardsList({search, type}: {search: string, type:strin
     //   return value;
     // });  
     // localStorage.setItem('posts', serializedPosts);
+    
     const posts = mockArray;
-    // let filteredPosts;
+    let filteredPosts;
   
-    // if (type === 'todos') {
-    //   filteredPosts = posts.filter(post => 
-    //     search === '' || 
-    //     post.title.toLowerCase().includes(search.toLowerCase()) || 
-    //     post.text.toLowerCase().includes(search.toLowerCase())
-    //   );
-    //   // setPosts(filteredPosts);
-    // } else if (type === 'videos' || type === 'podcasts' || type === 'artigos') {
-    //   filteredPosts = posts.filter(post => 
-    //     post.type === type && 
-    //     (post.title.toLowerCase().includes(search.toLowerCase()) || 
-    //     post.text.toLowerCase().includes(search.toLowerCase()))
-    //   );
-    //   // setPosts(filteredPosts);
-    // }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (type === 'todos') {
+      filteredPosts = posts.filter(post => 
+        search === '' || 
+        post.title.toLowerCase().includes(search.toLowerCase()) || 
+        post.text.toLowerCase().includes(search.toLowerCase())
+      );
+    } else if (type === 'videos' || type === 'podcasts' || type === 'artigos') {
+      filteredPosts = posts.filter(post => 
+        post.type === type && 
+        (post.title.toLowerCase().includes(search.toLowerCase()) || 
+        post.text.toLowerCase().includes(search.toLowerCase()))
+      );
+    }
+
 
   if (type === 'todos') {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {posts && posts
+        {filteredPosts && filteredPosts
           .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
           .map((post, index) => (
             <div key={index}>
-              {post.type === 'podcast' && <PodcastCard info={post} key={index} />}
-              {post.type === 'video' && <VideoCard info={post} key={index} />}
-              {post.type === 'artigo' && <ArticleCard info={post} key={index} />}      
+              {post.type === 'podcast' && <PodcastCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+              {post.type === 'video' && <VideoCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+              {post.type === 'artigo' && <ArticleCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}      
             </div>
           ))}
       </div>
@@ -62,9 +61,9 @@ export default function AllCardsList({search, type}: {search: string, type:strin
           .filter(post => post.type === type)
           .map((post, index) => (
             <div key={index}>
-              {post.type === 'podcast' && <PodcastCard info={post} key={index} />}
-              {post.type === 'video' && <VideoCard info={post} key={index} />}
-              {post.type === 'artigo' && <ArticleCard info={post} key={index} />}        
+              {post.type === 'podcast' && <PodcastCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+              {post.type === 'video' && <VideoCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+              {post.type === 'artigo' && <ArticleCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}        
             </div>
           ))}
       </div>
