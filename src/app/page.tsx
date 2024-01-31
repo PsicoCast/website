@@ -15,18 +15,18 @@ export default function Page() {
   return (
     <div 
     className="flex flex-col items-center justify-center shadow-md p-4 rounded max-w-full mx-auto mt-8 mb-4"
-    style={{
-        background: "radial-gradient(circle at center, #d25e2d, #ffb700, #140621)",
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        minHeight: '100vh'
-      }}
+    // style={{
+    //     background: "radial-gradient(circle at center, #d25e2d, #ffb700, #140621)",
+    //     backgroundAttachment: 'fixed',
+    //     backgroundSize: 'cover',
+    //     minHeight: '100vh'
+    //   }}
     // className="flex flex-col items-center justify-center border-2 border-yellow-500 shadow-md p-4 rounded max-w-md mx-auto mt-8 mb-4"
     >
     <main 
     >
             <header
-            className="w-full bg-gray-100 dark:bg-gray-900 border border-black rounded-lg flex flex-col items-center justify-center"
+            className="w-full bg-gray-300 dark:bg-gray-900 border border-black rounded-lg flex flex-col items-center justify-center"
             >
             <div className="flex justify-center items-center w-full ml-3 mt-3">
                 <div className="w-16 h-16 md:w-16 md:h-16 flex-shrink-0">
