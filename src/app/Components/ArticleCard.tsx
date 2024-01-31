@@ -13,13 +13,8 @@ interface InfoProps {
   createdAt: Date
 }
 
-type ArticleProps = {
-  info: InfoProps;
-}
 
-
-
-export default function ArticleCards({ info }: ArticleProps) {
+export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info: InfoProps, isModuleEdit: boolean, moduleToAdd: number}) {
   const [ articleContent, setArticleContent ] = useState(false);
   const [ isAdm, setIsAdm ] = useState(false);
   const [ isEdit, setIsEdit ] = useState(false);
@@ -59,7 +54,7 @@ export default function ArticleCards({ info }: ArticleProps) {
 
     return !isAdm ? (
       <div 
-        className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
+        className={`border p-4 rounded-lg bg-gray-100 dark:bg-gray-900 ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
       >
         {info.thumb ? 
         (<div className="w-full h-32 relative mb-2">
@@ -93,7 +88,7 @@ export default function ArticleCards({ info }: ArticleProps) {
     ) : (
       isEdit ? (
         <div 
-        className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
+        className={`border p-4 rounded-lg bg-gray-100 dark:bg-gray-900 ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
       >
       <form className="space-y-1">
         <label className="block">
@@ -122,7 +117,7 @@ export default function ArticleCards({ info }: ArticleProps) {
       </div>
       ) : (
       <div 
-      className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
+      className={`border p-4 rounded-lg bg-gray-100 dark:bg-gray-900 ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
     >
       {info.thumb ? 
       (<div className="w-full h-32 relative mb-2">
@@ -152,14 +147,25 @@ export default function ArticleCards({ info }: ArticleProps) {
         >Veja o Artigo</button>
       </div>
     }
-   <button
-    onClick={() => setIsEdit(true)}
-    className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
-   >Editar</button>
-   <button
-    className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
-   >Deletar</button>
-   </div>
+    {(!isModuleEdit) ? (
+      <>
+        <button
+        onClick={() => setIsEdit(true)}
+        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+        >Editar</button>
+        <button
+        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+        >Deletar</button>
+      </>      
+      ) : (
+        <>
+        <button
+          onClick={() => alert(`${info.title} adicionado ao módulo ${moduleToAdd}`)}
+          className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+        >Adicionar Conteúdo ao Módulo</button>
+        </>
+      )}
+      </div>
     ))
 }
 
