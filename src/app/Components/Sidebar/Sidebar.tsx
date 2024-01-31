@@ -3,7 +3,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function Sidebar() {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen bg-gray-300 dark:bg-gray-900">
       <div className="flex flex-wrap justify-around mb-4 mt-4 text-lg sm:text-xl md:text-2xl lg:text-3xl">
         <a href="https://www.facebook.com/psicocast" target="_blank" rel="noreferrer">
           <FaFacebook className="m-1" size={30} color="#3b5998" />

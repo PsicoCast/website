@@ -26,6 +26,10 @@ export default function VideoCard({ info }: VideoProps) {
     path === '/dashboard' ? setIsAdm(true) : setIsAdm(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleAcessContent = (url: string) => {
+    window.open(url, '_blank');
+  }
 /*   const serializedPosts = localStorage.getItem('posts'); */
   // let deserializedPosts;
   // let filteredPosts;
@@ -51,8 +55,10 @@ export default function VideoCard({ info }: VideoProps) {
     post.text.toLowerCase().includes(search.toLowerCase())));
   } */
 
+
+
   return !isAdm ? (
-      <div className="border p-4 rounded-lg">
+      <div className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-900">
         {info.thumb ? 
         <div className="w-full h-32 relative mb-2">
           <Image src={info.thumb} alt={info.title} layout="fill" objectFit="contain"/>
@@ -62,11 +68,14 @@ export default function VideoCard({ info }: VideoProps) {
         <h2 className="text-xl font-bold">{info.title}</h2>
         <p>Postado em {info.createdAt.toLocaleDateString()}</p>
         {/*<p>{post.description}</p>*/}
-        <a href={info.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
+        <button
+          onClick={() => handleAcessContent(info.link)}
+          className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+        >Acessar Conteúdo</button>
       </div>    
   ) : (
     isEdit ? (
-      <div className="border p-4 rounded-lg">
+      <div className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-900">
         <h1>Editar {info.type}</h1>
         <form className="space-y-4">
           <label 
@@ -108,7 +117,7 @@ export default function VideoCard({ info }: VideoProps) {
         </form>
       </div>
   ) : (
-    <div className="border p-4 rounded-lg">
+    <div className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-900">
     {info.thumb ? 
     <div className="w-full h-32 relative mb-2">
       <Image src={info.thumb} alt={info.title} layout="fill" objectFit="contain"/>
@@ -118,7 +127,10 @@ export default function VideoCard({ info }: VideoProps) {
     <h2 className="text-xl font-bold">{info.title}</h2>
     <p>Postado em {info.createdAt.toLocaleDateString()}</p>
     {/*<p>{post.description}</p>*/}
-    <a href={info.link} target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Acesse o conteúdo</a>
+    <button
+        onClick={() => handleAcessContent(info.link)}
+        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+      >Acessar Conteúdo</button>
     <button
         onClick={() => setIsEdit(true)}
         className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"

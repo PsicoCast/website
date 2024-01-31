@@ -59,7 +59,7 @@ export default function ArticleCards({ info }: ArticleProps) {
 
     return !isAdm ? (
       <div 
-        className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
+        className={`border p-4 rounded-lg bg-gray-100 dark:bg-gray-900 ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
       >
         {info.thumb ? 
         (<div className="w-full h-32 relative mb-2">
@@ -93,7 +93,7 @@ export default function ArticleCards({ info }: ArticleProps) {
     ) : (
       isEdit ? (
         <div 
-        className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
+        className={`border p-4 rounded-lg bg-gray-100 dark:bg-gray-900 ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
       >
       <form className="space-y-1">
         <label className="block">
@@ -122,7 +122,7 @@ export default function ArticleCards({ info }: ArticleProps) {
       </div>
       ) : (
       <div 
-      className={`border p-4 rounded-lg ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
+      className={`border p-4 rounded-lg bg-gray-100 dark:bg-gray-900 ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
     >
       {info.thumb ? 
       (<div className="w-full h-32 relative mb-2">

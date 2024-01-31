@@ -3,7 +3,6 @@ import PodcastCard from "./PodcastCard";
 import VideoCard from "./VideoCard";
 
 export default function ModuleCard({ module }: any) {
-  console.log('AQUIII',module);
   
   return (
     <div className="grid grid-cols-1 gap-4">
