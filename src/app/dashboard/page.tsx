@@ -49,17 +49,20 @@ export default function DashBoard() {
         //     minHeight: '100vh'
         // }}
         >
-          <p className="text-center text-2xl mb-3">Bem vindo ao painel de administração do PsicoCast!</p>
-          <main 
-          className=" w-[80vw] h-full overflow-auto"
-    >
+        <main className="w-7/10 h-full overflow-auto">
+        <div className="flex flex-col md:flex-row items-center justify-center text-center text-2xl mb-3 space-x-0 md:space-x-4">
+            <div className="w-16 h-16 md:w-16 md:h-16 flex-shrink-0">
+                <Image src="/logo.png" alt="Logo" width={64} height={64} layout="responsive" objectFit="contain"/>
+            </div>
+            <p>Bem vindo ao painel de administração do PsicoCast!</p>
+        </div>
           <header
             className="w-full bg-gray-300 border border-black rounded-lg flex flex-col items-center justify-center"
             >
             <div className="flex justify-center items-center w-full ml-3 mt-3">
-                <div className="w-16 h-16 md:w-16 md:h-16 flex-shrink-0">
+                {/* <div className="w-16 h-16 md:w-16 md:h-16 flex-shrink-0">
                 <Image src="/logo.png" alt="Logo" width={64} height={64} layout="responsive" objectFit="contain"/>
-                </div>
+                </div> */}
                 <div className="flex justify-center items-center mt-16 md:mt-3 py-3 w-full">
                 <label>
                     <input

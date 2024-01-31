@@ -23,28 +23,28 @@ export default function Page() {
     //   }}
     // className="flex flex-col items-center justify-center border-2 border-yellow-500 shadow-md p-4 rounded max-w-md mx-auto mt-8 mb-4"
     >
-        <h1 className='text-4xl'> PsicoCast - Slogan </h1>
     <main 
         className=" w-[80vw] h-full overflow-auto"
     >
+        <div className="flex justify-center items-center w-full mb-3">
+            <div className="w-16 h-16 md:w-16 md:h-16 flex-shrink-0">
+                    <Image src="/logo.png" alt="Logo" width={64} height={64} layout="responsive" objectFit="contain"/>
+            </div>
+            <h1 className='text-4xl'> PsicoCast - Slogan </h1>
+        </div>
             <header
             className="w-full bg-gray-300 dark:bg-gray-900 border border-black rounded-lg flex flex-col items-center justify-center"
             >
-            <div className="flex justify-center items-center w-full ml-3 mt-3">
-                <div className="w-16 h-16 md:w-16 md:h-16 flex-shrink-0">
-                <Image src="/logo.png" alt="Logo" width={64} height={64} layout="responsive" objectFit="contain"/>
-                </div>
-                <div className="flex justify-center items-center mt-16 md:mt-3 py-3 w-full">
-                <label>
-                    <input
-                    className="w-full max-w-full px-3 py-2 border rounded-md focus:outline-none"
-                    type="text"
-                    placeholder="Pesquise um conteúdo"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    />
-                </label>
-                </div>
+            <div className="flex justify-center items-center mt-16 md:mt-3 py-3 w-full">
+            <label>
+                <input
+                className="w-full max-w-full px-3 py-2 border rounded-md focus:outline-none"
+                type="text"
+                placeholder="Pesquise um conteúdo"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                />
+            </label>
             </div>
             <div
                 className="mx-auto flex md:flex-row flex-wrap w-full items-center justify-center py-3"
