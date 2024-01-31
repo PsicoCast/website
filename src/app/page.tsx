@@ -22,7 +22,7 @@ export default function Page() {
     // className="flex flex-col items-center justify-center border-2 border-yellow-500 shadow-md p-4 rounded max-w-md mx-auto mt-8 mb-4"
     >
     <main 
-        className=" w-[80vw] h-full overflow-auto"
+        className="w-[80vw] h-full"
     >
         <div className="flex justify-center items-center w-full mb-3">
             <div className="w-16 h-16 md:w-16 md:h-16 flex-shrink-0">
@@ -30,7 +30,7 @@ export default function Page() {
             </div>
             <h1 className='text-4xl'> PsicoCast - Slogan </h1>
         </div>
-            <header
+        <header
             className="w-full bg-gray-300 dark:bg-gray-900 border border-black rounded-lg flex flex-col items-center justify-center"
             >
             <div className="flex justify-center items-center mt-16 md:mt-3 py-3 w-full">
@@ -79,7 +79,7 @@ export default function Page() {
               {type === 'modules' && <ModulesList />} 
             </article>
             <div
-                className="md:w-2/5 lg:w-1/4 h-full border border-black rounded-lg sidebar sticky top-0"
+                className="md:w-2/5 lg:w-1/4 h-full border border-black rounded-lg sidebar overflow-auto sticky top-0"
             >
                 <Sidebar />
             </div>
