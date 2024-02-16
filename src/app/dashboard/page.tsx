@@ -3,6 +3,7 @@ import { useState } from "react";
 import AllCardsList from "../Components/AllCardsList";
 import ModulesList from "../Components/ModulesList";
 import Image from 'next/image';
+import { content } from '../Types/types';
 
 export default function DashBoard() {
     const [ isAdm, setIsAdm ] = useState(false);
@@ -14,6 +15,71 @@ export default function DashBoard() {
     const [ type, setType ] = useState('todos');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ addContent, setAddContent ] = useState<content>({
+        type: '',
+        title: '',
+        text: '',
+        link: '',
+        thumbnail: '',
+    });
+
+    const postDB = async () => {
+        const token = localStorage.getItem('token');
+
+        // Make the POST request
+        const response = await fetch('http://localhost:3001/content', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${token}` // Add the Authorization header
+          },
+          body: JSON.stringify(addContent)
+        });
+      
+        if (response.status === 200) {
+          console.log('Success!');
+          const data = await response.json();
+          console.log(data);
+        } else {
+          console.log(`Error: ${response.status}`);
+          const errorData = await response.json(); // Get the error details from the response body
+          console.log(errorData);
+        }
+    }
+
+    const addingContent = async (type: string, e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        console.log(type)
+        if (type === 'video') {
+            try {
+                await postDB();
+                setAddVideo(false);      
+            } catch (error) {
+                setIsAdm(false);
+            }
+        } else if (type === 'podcast') {
+            try {
+                await postDB();
+                setAddPodcast(false);                
+            } catch (error) {
+                setIsAdm(false);
+            }
+        } else if (type === 'text') {
+            try {
+                await postDB();
+                setAddArticle(false);                
+            } catch (error) {
+                setIsAdm(false);
+            }
+        } else if (type === 'modules') {
+            try {
+                await postDB();
+                setAddModule(false);                
+            } catch (error) {
+                setIsAdm(false);
+            }
+        }
+    };
 
 
     const fetchLogin = async () => {
@@ -29,6 +95,8 @@ export default function DashBoard() {
             if (data.token) {
                 setIsAdm(true);
                 localStorage.setItem('token', data.token);
+            } else {
+                alert('Email ou Password incorretos!');
             }
         })
         .catch(error => console.error('Error:', error));
@@ -172,22 +240,51 @@ export default function DashBoard() {
                         <form className="space-y-4">
                             <label className="block">
                             Título:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            <input 
+                                type="text" 
+                                minLength={3}
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, title: e.target.value}
+                                    })}
+                                />
                             </label>
                             <label className="block">
                             Descrição:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            <input 
+                                type="text"
+                                minLength={10}
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" 
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, text: e.target.value}
+                                    })}
+                            />
                             </label>
                             <label className="block">
                             Link:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            <input 
+                                type="text" 
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" 
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, link: e.target.value}
+                                    })}
+                            />
                             </label>
                             <label className="block">
                             Thumb:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            <input 
+                                type="text" 
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" 
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, 
+                                        thumbnail: e.target.value,
+                                        type: 'youtube'                                    
+                                    }
+                                    })}
+                            />
                             </label>
                             <button
-                            onClick={() => setAddVideo(false)}
+                            onClick={(e) => addingContent('video', e)}
                             className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                             >
                             Adicionar
@@ -211,22 +308,51 @@ export default function DashBoard() {
                             <form className="space-y-4">
                             <label className="block">
                             Título:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            <input 
+                                type="text" 
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" 
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, title: e.target.value}
+                                    })}
+                                minLength={3}
+                            />
                             </label>
                             <label className="block">
                             Descrição:
-                            <input type="text"  className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            <input 
+                                type="text"  
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, text: e.target.value}
+                                    })}
+                            />
                             </label>
                             <label className="block">
                             Link:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            <input 
+                                type="text" 
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, link: e.target.value}
+                                    })}
+                                minLength={10}
+                            />
                             </label>
                             <label className="block">
                             Thumb:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none" />
+                            <input 
+                                type="text" 
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, 
+                                        thumbnail: e.target.value,
+                                        type: 'spotify'                                    
+                                    }
+                                    })}
+                            />
                             </label>
                                 <button
-                                onClick={() => setAddPodcast(false)}
+                                onClick={(e) => addingContent('podcast', e)}
                                 className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                                 >
                                 Salvar
@@ -250,22 +376,55 @@ export default function DashBoard() {
                         <form className="space-y-4">
                         <label className="block">
                             Título:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+                            <input 
+                                type="text" 
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4"
+                                minLength={3}
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, title: e.target.value}
+                                    }
+                                )}
+                            />
                             </label>
                             <label className="block">
                             Texto:
-                            <textarea rows={10} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+                            <textarea 
+                                rows={10} 
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4"
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, text: e.target.value}
+                                    }
+                                )}
+                                minLength={10}
+                             />
                             </label>
                             <label className="block">
                             Link:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+                            <input 
+                                type="text" 
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4"
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, link: e.target.value}
+                                    }
+                                )}
+                            />
                             </label>
                             <label className="block">
                             Thumb:
-                            <input type="text" className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+                            <input 
+                                type="text" 
+                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4"
+                                onChange={(e) => setAddContent((prev) => {
+                                    return {...prev, 
+                                        thumbnail: e.target.value,
+                                        type: 'text'                                    
+                                    }
+                                    }
+                                )}
+                            />
                             </label>
                             <button
-                            onClick={() => setAddArticle(false)}
+                            onClick={(e) => addingContent('text', e)}
                             className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                             >
                             Salvar
