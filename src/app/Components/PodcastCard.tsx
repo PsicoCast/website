@@ -61,7 +61,7 @@ export default function PodcastCard ({ info, isModuleEdit, moduleToAdd }: {info:
           <Image src={info.thumbnail} alt={info.title} layout="fill" objectFit="contain"/>
         </div> 
         : null}
-        <h1>{info.type}</h1>
+        <h1>PodCast</h1>
         <h2 className="text-xl font-bold">{info.title}</h2>
         <p>Postado em {new Date(info.created_at).toLocaleDateString()}</p>
         {/*<p>{info.description}</p>*/}
@@ -105,7 +105,7 @@ export default function PodcastCard ({ info, isModuleEdit, moduleToAdd }: {info:
         <Image src={info.thumbnail} alt={info.title} layout="fill" objectFit="contain"/>
       </div> 
       : null}
-      <h1>{info.type}</h1>
+      <h1>PodCast</h1>
       <h2 className="text-xl font-bold">{info.title}</h2>
       <p>Postado em {new Date(info.created_at).toLocaleDateString()}</p>
       {/*<p>{info.description}</p>*/}

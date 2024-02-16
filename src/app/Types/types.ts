@@ -13,6 +13,7 @@ export type module = {
     id: number;
     title: string;
     thumbnail: string;
+    contents: content[];
     created_at: Date;
     updated_at: Date;
 }

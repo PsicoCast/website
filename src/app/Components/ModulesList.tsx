@@ -1,18 +1,21 @@
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from "react";
-import { modulesMocks } from '../../Mocks/modulesMocks';
 import ModuleCard from './ModuleCard';
 import AllCardsList from './AllCardsList';
+import { modulesMocks } from '../../Mocks/modulesMocks';
+// import { modules } from '../Types/types';
 
 type IModule = {
   id: number,
   title: string,
+  // thumbnail: string,
   contents: any
 }
 
 export default function ModulesList() {
   
     const path = usePathname();
+    // const [ data, setData ] = useState<module[]>([]);
     const [ moduleId, setModuleId ] = useState(0);
     const [ isModuleRendered, setIsModuleRendered ] = useState(false);
     const [ isAdm ] = useState(path === '/dashboard');
@@ -51,7 +54,6 @@ export default function ModulesList() {
               id="title"
               placeholder={moduleToEdit.title}
             />
-            
             <div
               className='flex flex-col space-y-4'
             >

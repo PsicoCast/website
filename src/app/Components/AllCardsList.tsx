@@ -1,5 +1,6 @@
 // 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 // import { mockArray } from '../../Mocks/posts';
 import PodcastCard from './PodcastCard';
 import VideoCard from './VideoCard';
@@ -51,7 +52,24 @@ export default function AllCardsList({search, type, isModuleEdit, moduleToAdd}: 
 
 
     if (isLoading) {
-      return <div>Loading...</div>;
+      return (
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column', // Change the direction to column
+          justifyContent: 'flex-start', // Align items to the start vertically
+          alignItems: 'center', // Align items to the center horizontally
+          height: '100vh',
+          paddingTop: '30px' // Add some padding to the top
+        }}>
+          <Image 
+            src="/loading-arrow.png" // Replace with the path to your image
+            alt="Loading"
+            width={200} // Increase the width
+            height={200} // Increase the height
+            className="slow-spin" // Apply the slow-spin class
+          />
+        </div>
+      )
     } else {
       if (type === 'todos') {
         return (
