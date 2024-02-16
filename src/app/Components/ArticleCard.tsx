@@ -4,13 +4,14 @@ import { usePathname } from 'next/navigation'
 
 
 interface InfoProps {
-  type: string,
-  title: string,
-  text: string,
-  link: string,
-  thumb: string,
-  category: string,
-  createdAt: Date
+  id: number;
+  type: string;
+  title: string;
+  text: string;
+  link: string;
+  thumbnail: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 
@@ -56,14 +57,14 @@ export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info:
       <div 
         className={`border p-4 rounded-lg bg-gray-100 dark:bg-gray-900 ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
       >
-        {info.thumb ? 
+        {info.thumbnail ? 
         (<div className="w-full h-32 relative mb-2">
-          <Image src={info.thumb} alt={info.title} layout="fill" objectFit="contain"/>
+          <Image src={info.thumbnail} alt={info.title} layout="fill" objectFit="contain"/>
         </div>)
         : null}
-      <h1>{info.type}</h1>
+      <h1>Artigo</h1>
       <h2 className="text-xl font-bold">{info.title}</h2>
-      <p>Postado em {info.createdAt.toLocaleDateString()}</p>
+      <p>Postado em {new Date(info.created_at).toLocaleDateString()}</p>
       {articleContent ? 
         <div className="p-4">
           <p>{info.text}</p>
@@ -105,7 +106,7 @@ export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info:
         </label>
         <label className="block">
           Thumb:
-          <input type="text" value={info.thumb} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+          <input type="text" value={info.thumbnail} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
         </label>
         <button
           onClick={() => setIsEdit(false)}
@@ -119,14 +120,14 @@ export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info:
       <div 
       className={`border p-4 rounded-lg bg-gray-100 dark:bg-gray-900 ${articleContent ? 'fixed top-10 left-10 w-4/5 h-4/5 z-10 bg-white shadow-lg overflow-auto transform scale-120 transition-transform duration-500 ease-in-out' : ''}`}
     >
-      {info.thumb ? 
+      {info.thumbnail ? 
       (<div className="w-full h-32 relative mb-2">
-        <Image src={info.thumb} alt={info.title} layout="fill" objectFit="contain"/>
+        <Image src={info.thumbnail} alt={info.title} layout="fill" objectFit="contain"/>
       </div>)
       : null}
-    <h1>{info.type}</h1>
+    <h1>Artigo</h1>
     <h2 className="text-xl font-bold">{info.title}</h2>
-    <p>Postado em {info.createdAt.toLocaleDateString()}</p>
+    <p>Postado em {new Date(info.created_at).toLocaleDateString()}</p>
     {articleContent ? 
       <div className="p-4">
         <p>{info.text}</p>

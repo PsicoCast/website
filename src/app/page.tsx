@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AllCardsList from "./Components/AllCardsList";
 import ModulesList from "./Components/ModulesList";
 import Sidebar from "./Components/Sidebar/Sidebar";
@@ -8,6 +8,7 @@ import Image from 'next/image';
 export default function Page() {
   const [ search, setSearch ] = useState('');
   const [ type, setType ] = useState('todos');
+  const [ data, setData ] = useState([]);
 
  
   return (
@@ -54,15 +55,15 @@ export default function Page() {
                 >Todos</button>
                 <button
                     className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'podcast' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                    onClick={() => setType('podcast')}
+                    onClick={() => setType('spotify')}
                 >PodCast</button>
                 <button
                     className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'artigo' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                    onClick={() => setType('artigo')}
+                    onClick={() => setType('text')}
                 >Artigos</button>
                 <button
                     className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'video' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                    onClick={() => setType('video')}
+                    onClick={() => setType('youtube')}
                 >Videos</button>
                 <button
                     className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'modules' ? 'bg-black text-white' : 'bg-yellow-600'}`}

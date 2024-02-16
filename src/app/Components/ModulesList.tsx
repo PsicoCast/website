@@ -51,6 +51,7 @@ export default function ModulesList() {
               id="title"
               placeholder={moduleToEdit.title}
             />
+            
             <div
               className='flex flex-col space-y-4'
             >

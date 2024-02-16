@@ -3,13 +3,14 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 interface InfoProps {
-  type: string,
-  title: string,
-  text: string,
-  link: string,
-  thumb: string,
-  category: string,
-  createdAt: Date
+  id: number;
+  type: string;
+  title: string;
+  text: string;
+  link: string;
+  thumbnail: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: InfoProps, isModuleEdit: boolean, moduleToAdd: number}) {
@@ -54,14 +55,14 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
 
   return !isAdm ? (
       <div className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-900">
-        {info.thumb ? 
+        {info.thumbnail ? 
         <div className="w-full h-32 relative mb-2">
-          <Image src={info.thumb} alt={info.title} layout="fill" objectFit="contain"/>
+          <Image src={info.thumbnail} alt={info.title} layout="fill" objectFit="contain"/>
         </div> 
         : null}
         <h1>{info.type}</h1>
         <h2 className="text-xl font-bold">{info.title}</h2>
-        <p>Postado em {info.createdAt.toLocaleDateString()}</p>
+        <p>Postado em {new Date(info.created_at).toLocaleDateString()}</p>
         {/*<p>{post.description}</p>*/}
         <button
           onClick={() => handleAcessContent(info.link)}
@@ -89,7 +90,7 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
             type="text" 
             id="thumb" 
             name="thumb" 
-            defaultValue={info.thumb} 
+            defaultValue={info.thumbnail} 
             className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"/>
           <label 
             className="block"
@@ -113,14 +114,14 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
       </div>
   ) : (
     <div className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-900">
-    {info.thumb ? 
+    {info.thumbnail ? 
     <div className="w-full h-32 relative mb-2">
-      <Image src={info.thumb} alt={info.title} layout="fill" objectFit="contain"/>
+      <Image src={info.thumbnail} alt={info.title} layout="fill" objectFit="contain"/>
     </div> 
     : null}
     <h1>{info.type}</h1>
     <h2 className="text-xl font-bold">{info.title}</h2>
-    <p>Postado em {info.createdAt.toLocaleDateString()}</p>
+    <p>Postado em {new Date(info.created_at).toLocaleDateString()}</p>
     {/*<p>{post.description}</p>*/}
     <button
         onClick={() => handleAcessContent(info.link)}

@@ -11,9 +11,9 @@ export default function ModuleCard({ module }: any) {
       {module.contents && (module.contents).map((contents: any, index: number) => {
         return (
           <div key={index} className="w-7/10 mx-auto flex flex-col items-center">
-            {contents.type === 'podcast' && <PodcastCard info={contents} isModuleEdit={true} moduleToAdd={0}/>}
-            {contents.type === 'video' && <VideoCard info={contents} isModuleEdit={true} moduleToAdd={0}/>}
-            {contents.type === 'artigo' && <ArticleCard info={contents} isModuleEdit={true} moduleToAdd={0}/>}
+            {contents.type === 'spotify' && <PodcastCard info={contents} isModuleEdit={true} moduleToAdd={0}/>}
+            {contents.type === 'youtube' && <VideoCard info={contents} isModuleEdit={true} moduleToAdd={0}/>}
+            {contents.type === 'text' && <ArticleCard info={contents} isModuleEdit={true} moduleToAdd={0}/>}
           </div>
         );
       })}
