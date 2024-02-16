@@ -6,39 +6,74 @@ import Image from 'next/image';
 
 export default function DashBoard() {
     const [ isAdm, setIsAdm ] = useState(false);
-    const [ userInput, setUserInput ] = useState('');
     const [ addPodcast, setAddPodcast ] = useState(false);
     const [ addVideo, setAddVideo ] = useState(false);
     const [ addArticle, setAddArticle ] = useState(false);
     const [ addModule, setAddModule ] = useState(false);
     const [ search, setSearch ] = useState('');
     const [ type, setType ] = useState('todos');
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
 
-    const pass = '123';
 
-    const handleEnter = () => {
-        if (userInput === pass) {
-            setIsAdm(true);
-        } else {
-            alert('Senha incorreta!');
-        }
+    const fetchLogin = async () => {
+        await fetch('http://localhost:3001/login', { // Add 'http://' to the start of the URL
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email, password})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.token) {
+                setIsAdm(true);
+                localStorage.setItem('token', data.token);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    const handleEnter = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        await fetchLogin();
+        // if (userInput === pass) {
+        //     setIsAdm(true);
+        // } else {
+        //     alert('Senha incorreta!');
+        // }
     };
 
+
     return !isAdm ? (
-        <div className="flex flex-col items-center justify-center border-2 border-yellow-500 shadow-md p-4 rounded max-w-md mx-auto mt-8 mb-4">
-          <p className="text-center">Insira a senha para acessar o painel de administração:</p>
-          <input 
-            type="password" 
-            onChange={(e) => setUserInput(e.target.value)}
-            className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"
-          />
-        <button
-        onClick={() => handleEnter()}
-        className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4"
-        >
-        Entrar
-        </button>
-        </div>
+        <form>
+            <div className="flex flex-col items-center justify-center border-2 border-yellow-500 shadow-md p-4 rounded max-w-md mx-auto mt-8 mb-4">
+                <p className="text-center">Insira o e-mail e a senha para acessar o painel de administração:</p>
+                
+                <input 
+                    type="email" 
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"
+                    placeholder="Email"
+                />
+
+                <input 
+                    type="password" 
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"
+                    placeholder="Senha"
+                    autoComplete="current-password"
+                />
+
+                <button
+                    onClick={(e) => handleEnter(e)}
+                    className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4"
+                >
+                    Entrar
+                </button>
+            </div>
+
+        </form>
       ) : (
         <div 
         className="flex flex-col items-center justify-center border- shadow-md p-4 rounded max-w-full mx-auto mt-8 mb-4"
@@ -83,16 +118,16 @@ export default function DashBoard() {
                     onClick={() => setType('todos')}
                 >Todos</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'podcast' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                    onClick={() => setType('podcast')}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'spotify' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('spotify')}
                 >PodCast</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'artigo' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                    onClick={() => setType('artigo')}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'text' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('text')}
                 >Artigos</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'video' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                    onClick={() => setType('video')}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'youtube' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('youtube')}
                 >Videos</button>
                 <button
                     className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'modules' ? 'bg-black text-white' : 'bg-yellow-600'}`}
