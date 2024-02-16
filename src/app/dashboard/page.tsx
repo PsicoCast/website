@@ -123,6 +123,7 @@ export default function DashBoard() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"
                     placeholder="Email"
+                    autoComplete="email"
                 />
 
                 <input 
@@ -399,17 +400,6 @@ export default function DashBoard() {
                              />
                             </label>
                             <label className="block">
-                            Link:
-                            <input 
-                                type="text" 
-                                className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4"
-                                onChange={(e) => setAddContent((prev) => {
-                                    return {...prev, link: e.target.value}
-                                    }
-                                )}
-                            />
-                            </label>
-                            <label className="block">
                             Thumb:
                             <input 
                                 type="text" 
@@ -417,7 +407,8 @@ export default function DashBoard() {
                                 onChange={(e) => setAddContent((prev) => {
                                     return {...prev, 
                                         thumbnail: e.target.value,
-                                        type: 'text'                                    
+                                        type: 'text',
+                                        link: '-'
                                     }
                                     }
                                 )}
