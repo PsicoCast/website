@@ -8,7 +8,6 @@ import Image from 'next/image';
 export default function Page() {
   const [ search, setSearch ] = useState('');
   const [ type, setType ] = useState('todos');
-  const [ data, setData ] = useState([]);
 
  
   return (
@@ -54,15 +53,15 @@ export default function Page() {
                     onClick={() => setType('todos')}
                 >Todos</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'podcast' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'spotify' ? 'bg-black text-white' : 'bg-yellow-600'}`}
                     onClick={() => setType('spotify')}
                 >PodCast</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'artigo' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'text' ? 'bg-black text-white' : 'bg-yellow-600'}`}
                     onClick={() => setType('text')}
                 >Artigos</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'video' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'youtube' ? 'bg-black text-white' : 'bg-yellow-600'}`}
                     onClick={() => setType('youtube')}
                 >Videos</button>
                 <button
