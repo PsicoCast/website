@@ -56,7 +56,7 @@ export default function PodcastCard ({ info, isModuleEdit, moduleToAdd }: {info:
       body: JSON.stringify(contentToEdit)
     });
     if (response.status === 200) {
-      const data = await response.json();
+      await response.json();
       setIsEdit(false);
     } else {
       console.log(`Error: ${response.status}`);

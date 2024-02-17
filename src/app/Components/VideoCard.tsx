@@ -54,7 +54,7 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
       body: JSON.stringify(contentToEdit)
     });
     if (response.status === 200) {
-      const data = await response.json();
+      await response.json();
       setIsEdit(false);
     } else {
       console.log(`Error: ${response.status}`);
