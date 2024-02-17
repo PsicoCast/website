@@ -57,7 +57,6 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
       await response.json();
       setIsEdit(false);
     } else {
-      console.log(`Error: ${response.status}`);
       const errorData = await response.json(); // Get the error details from the response body
       alert(errorData.message)
     }
