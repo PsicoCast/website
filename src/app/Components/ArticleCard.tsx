@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { useEffect, useState } from "react";
 import { usePathname } from 'next/navigation'
 
-
 interface InfoProps {
   id: number;
   type: string;
@@ -14,11 +13,25 @@ interface InfoProps {
   updated_at: Date;
 }
 
+type editProps = {
+  type: string;
+  title: string;
+  text: string;
+  link: string;
+  thumbnail: string;
+}
 
 export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info: InfoProps, isModuleEdit: boolean, moduleToAdd: number}) {
   const [ articleContent, setArticleContent ] = useState(false);
   const [ isAdm, setIsAdm ] = useState(false);
   const [ isEdit, setIsEdit ] = useState(false);
+  const [ contentToEdit, setContentToEdit ] = useState<editProps>({
+    type: info.type,
+    title: info.title,
+    text: info.text,
+    link: info.link,
+    thumbnail: info.thumbnail
+  });
 
   const path = usePathname();
 
@@ -26,32 +39,27 @@ export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info:
     path === '/dashboard' ? setIsAdm(true) : setIsAdm(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
- /*  const serializedPosts = localStorage.getItem('posts');
-  let deserializedPosts; */
-  let filteredPosts;
 
-/*   if (serializedPosts) {
-    deserializedPosts = JSON.parse(serializedPosts, (key, value) => {
-      if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(value)) {
-        return new Date(value);
-      }
-      return value;
+  const saveEdit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const response = await fetch(`http://localhost:3001/content/${info.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${token}`
+      },
+      body: JSON.stringify(contentToEdit)
     });
-  
-  }
-
-  if (deserializedPosts) {      
-    deserializedPosts = deserializedPosts.filter((post: any) => 
-    post.type === 'artigo' && 
-    (post.title.toLowerCase().includes(search.toLowerCase()) ||
-    post.text.toLowerCase().includes(search.toLowerCase())));
-  } else {
-    filteredPosts = mockArray.filter((post) =>
-    post.type === 'artigo' &&
-    (post.title.toLowerCase().includes(search.toLowerCase()) ||
-    post.text.toLowerCase().includes(search.toLowerCase())));
-  } */
+    if (response.status === 200) {
+      const data = await response.json();
+      setIsEdit(false);
+    } else {
+      console.log(`Error: ${response.status}`);
+      const errorData = await response.json(); // Get the error details from the response body
+      alert(errorData.message)
+    }
+  };
 
     return !isAdm ? (
       <div 
@@ -94,22 +102,35 @@ export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info:
       <form className="space-y-1">
         <label className="block">
           Título:
-          <input type="text" value={info.title} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+          <input 
+              type="text"
+              value={contentToEdit.title}
+              minLength={3}
+              onChange={(e) => setContentToEdit((prev) => ({...prev, title: e.target.value}))}
+              className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4"
+            />
         </label>
         <label className="block">
           Texto:
-          <textarea value={info.text} rows={10} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
-        </label>
-        <label className="block">
-          Link:
-          <input type="text" value={info.link} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+          <textarea 
+            value={contentToEdit.text} 
+            rows={10}
+            minLength={10}
+            onChange={(e) => setContentToEdit((prev) => ({...prev, text: e.target.value}))}
+            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4"
+          />
         </label>
         <label className="block">
           Thumb:
-          <input type="text" value={info.thumbnail} className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4" />
+          <input 
+            type="text" 
+            value={contentToEdit.thumbnail} 
+            onChange={(e) => setContentToEdit((prev) => ({...prev, thumbnail: e.target.value}))}
+            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none mb-4"
+          />
         </label>
         <button
-          onClick={() => setIsEdit(false)}
+          onClick={(e) => saveEdit(e)}
           className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
         >
           Salvar

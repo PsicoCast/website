@@ -13,9 +13,24 @@ interface InfoProps {
   updated_at: Date;
 }
 
+type editProps = {
+  type: string;
+  title: string;
+  text: string;
+  link: string;
+  thumbnail: string;
+}
+
 export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: InfoProps, isModuleEdit: boolean, moduleToAdd: number}) {
   const [ isAdm, setIsAdm ] = useState(false);
   const [ isEdit, setIsEdit ] = useState(false);
+  const [ contentToEdit, setContentToEdit ] = useState<editProps>({
+    type: info.type,
+    title: info.title,
+    text: info.text,
+    link: info.link,
+    thumbnail: info.thumbnail
+  });
   const path = usePathname();
 
     useEffect(() => {
@@ -26,32 +41,27 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
   const handleAcessContent = (url: string) => {
     window.open(url, '_blank');
   }
-/*   const serializedPosts = localStorage.getItem('posts'); */
-  // let deserializedPosts;
-  // let filteredPosts;
 
-/*   if (serializedPosts) {
-    deserializedPosts = JSON.parse(serializedPosts, (key, value) => {
-      if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/.test(value)) {
-        return new Date(value);
-      }
-      return value;
+  const saveEdit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const response = await fetch(`http://localhost:3001/content/${info.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${token}`
+      },
+      body: JSON.stringify(contentToEdit)
     });
-  }
-
-  if (deserializedPosts) {      
-    deserializedPosts = deserializedPosts.filter((post: any) => 
-    post.type === 'video' && 
-    (post.title.toLowerCase().includes(search.toLowerCase()) ||
-    post.text.toLowerCase().includes(search.toLowerCase())));
-  } else {
-    filteredPosts = mockArray.filter((post) =>
-    post.type === 'video' &&
-    (post.title.toLowerCase().includes(search.toLowerCase()) ||
-    post.text.toLowerCase().includes(search.toLowerCase())));
-  } */
-
-
+    if (response.status === 200) {
+      const data = await response.json();
+      setIsEdit(false);
+    } else {
+      console.log(`Error: ${response.status}`);
+      const errorData = await response.json(); // Get the error details from the response body
+      alert(errorData.message)
+    }
+  };
 
   return !isAdm ? (
       <div className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-900">
@@ -78,36 +88,47 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
             className="block"
             htmlFor="title">Título</label>
           <input 
-            type="text" 
-            id="title" 
-            name="title" 
-            defaultValue={info.title} 
-            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"/>
+              type="text" 
+              id="title" 
+              name="title" 
+              value={contentToEdit.title} 
+              minLength={3}
+              onChange={(e) => setContentToEdit((prev) => ({...prev, title: e.target.value}))}
+              className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"/>
           <label 
             className="block"
             htmlFor="thumb">Thumb:</label>
           <input 
-            type="text" 
-            id="thumb" 
-            name="thumb" 
-            defaultValue={info.thumbnail} 
-            className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"/>
+              type="text" 
+              id="thumb" 
+              name="thumb" 
+              value={contentToEdit.thumbnail} 
+              onChange={(e) => setContentToEdit((prev) => ({...prev, thumbnail: e.target.value}))}
+              className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"/>
           <label 
             className="block"
             htmlFor="link">Link do vídeo</label>
           <input 
             type="text" 
             id="link" 
-            name="link" 
-            defaultValue={info.link} 
+            name="link"
+            value={contentToEdit.link} 
+            onChange={(e) => setContentToEdit((prev) => ({...prev, link: e.target.value}))}
             className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none"/>
           <label 
             className="block"
             htmlFor="text">Descrição</label>
-          <textarea name="text" rows={10} id="text" defaultValue={info.text} className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt
-          -4 w-full"/>
+          <textarea 
+            name="text" 
+            rows={10} 
+            id="text" 
+            value={contentToEdit.text} 
+            className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4 w-full"
+            onChange={(e) => setContentToEdit((prev) => ({...prev, text: e.target.value}))}
+            minLength={10}
+          />
           <button
-            onClick={() => setIsEdit(false)}
+            onClick={(e) => saveEdit(e)}
             className="border-2 border-yellow-500 shadow-md bg-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-brown-500 mt-4"
           >Salvar</button>
         </form>

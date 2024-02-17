@@ -5,9 +5,18 @@ import Image from 'next/image';
 import PodcastCard from './PodcastCard';
 import VideoCard from './VideoCard';
 import ArticleCard from './ArticleCard';
-import { content, module } from '../Types/types';
+import { content } from '../Types/types';
 
-
+interface InfoProps {
+  id: number;
+  type: string;
+  title: string;
+  text: string;
+  link: string;
+  thumbnail: string;
+  created_at: Date;
+  updated_at: Date;
+}
 
 export default function AllCardsList({search, type, isModuleEdit, moduleToAdd}: {search: string, type:string, isModuleEdit: boolean, moduleToAdd: number}) {
 
@@ -75,12 +84,19 @@ export default function AllCardsList({search, type, isModuleEdit, moduleToAdd}: 
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filteredData && filteredData
-              .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+              .sort((a, b) => {
+                if (a.created_at !== undefined && b.created_at !== undefined) {
+                  return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+                } else {
+                  // Handle the case where created_at is undefined
+                  return 0;
+                }
+              })
               .map((post, index) => (
                 <div key={index}>
-                  {post.type === 'spotify' && <PodcastCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
-                  {post.type === 'youtube' && <VideoCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
-                  {post.type === 'text' && <ArticleCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}      
+                  {post.type === 'spotify' && <PodcastCard info={post as InfoProps} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+                  {post.type === 'youtube' && <VideoCard info={post as InfoProps} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+                  {post.type === 'text' && <ArticleCard info={post as InfoProps} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}      
                 </div>
               ))}
           </div>
@@ -89,13 +105,20 @@ export default function AllCardsList({search, type, isModuleEdit, moduleToAdd}: 
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filteredData && filteredData
-              .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+              .sort((a, b) => {
+                if (a.created_at !== undefined && b.created_at !== undefined) {
+                  return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+                } else {
+                  // Handle the case where created_at is undefined
+                  return 0;
+                }
+              })
               .filter(post => post.type === type)
               .map((post, index) => (
                 <div key={index}>
-                  {post.type === 'spotify' && <PodcastCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
-                  {post.type === 'youtube' && <VideoCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
-                  {post.type === 'text' && <ArticleCard info={post} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}        
+                  {post.type === 'spotify' && <PodcastCard info={post as InfoProps} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+                  {post.type === 'youtube' && <VideoCard info={post as InfoProps} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}
+                  {post.type === 'text' && <ArticleCard info={post as InfoProps} key={index} isModuleEdit={isModuleEdit} moduleToAdd={moduleToAdd}/>}        
                 </div>
               ))}
           </div>
