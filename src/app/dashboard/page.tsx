@@ -5,6 +5,15 @@ import ModulesList from "../Components/ModulesList";
 import Image from 'next/image';
 import { content } from '../Types/types';
 
+type Content = {
+    type: string;
+    title: string;
+    text: string;
+    link: string;
+    thumbnail: string;
+    modules: number[];
+}
+
 export default function DashBoard() {
     const [ isAdm, setIsAdm ] = useState(false);
     const [ addPodcast, setAddPodcast ] = useState(false);
@@ -15,12 +24,14 @@ export default function DashBoard() {
     const [ type, setType ] = useState('todos');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-    const [ addContent, setAddContent ] = useState<content>({
+    const [ updateFetch, setUpdateFetch ] = useState(false);
+    const [ addContent, setAddContent ] = useState<Content>({
         type: '',
         title: '',
         text: '',
         link: '',
         thumbnail: '',
+        modules: []
     });
 
     const postDB = async () => {
@@ -49,7 +60,6 @@ export default function DashBoard() {
 
     const addingContent = async (type: string, e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        console.log(type)
         if (type === 'video') {
             try {
                 await postDB();
@@ -202,6 +212,10 @@ export default function DashBoard() {
                     className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'modules' ? 'bg-black text-white' : 'bg-yellow-600'}`}
                     onClick={() => setType('modules')}
                 >Módulos</button>
+                <button
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ml-auto hover:bg-black hover:text-white  bg-yellow-600`}
+                    onClick={() => setUpdateFetch((prev) => !prev)}
+                >Atualizar Conteúdo</button>
             </div>
         </header>
         <div className="flex flex-wrap justify-around items-center w-full bg-gray-100 dark:bg-gray-900 border border-black rounded-lg mt-4 p-4">
@@ -453,7 +467,7 @@ export default function DashBoard() {
                     </div>
                 </div>
                 )}
-                {type !== 'modules' && <AllCardsList search={search} type={type} isModuleEdit={false} moduleToAdd={0}/>}
+                {type !== 'modules' && <AllCardsList search={search} type={type} isModuleEdit={false} moduleToAdd={0} updateFetch={updateFetch}/>}
                 {type === 'modules' && <ModulesList />} 
             </article>
         </section>

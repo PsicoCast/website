@@ -19,6 +19,7 @@ type editProps = {
   text: string;
   link: string;
   thumbnail: string;
+  modules: number[];
 }
 
 export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: InfoProps, isModuleEdit: boolean, moduleToAdd: number}) {
@@ -29,7 +30,8 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
     title: info.title,
     text: info.text,
     link: info.link,
-    thumbnail: info.thumbnail
+    thumbnail: info.thumbnail,
+    modules: []
   });
   const path = usePathname();
 

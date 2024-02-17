@@ -18,7 +18,7 @@ interface InfoProps {
   updated_at: Date;
 }
 
-export default function AllCardsList({search, type, isModuleEdit, moduleToAdd}: {search: string, type:string, isModuleEdit: boolean, moduleToAdd: number}) {
+export default function AllCardsList({search, type, isModuleEdit, moduleToAdd, updateFetch}: {search: string, type:string, isModuleEdit: boolean, moduleToAdd: number, updateFetch: boolean}) {
 
   const [data, setData] = useState<content[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +39,21 @@ export default function AllCardsList({search, type, isModuleEdit, moduleToAdd}: 
     setIsLoading(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const posts = fetch('http://localhost:3001/content')
+    .then(response => response.json())
+    .then(data => data)
+    .catch(error => console.error('Error:', error));
+    const resolvedPromisse = Promise.resolve(posts);
+    resolvedPromisse.then((value) => {
+      setData(value.filter((post: any) => 
+      search === '' || 
+      post.title.toLowerCase().includes(search.toLowerCase()) || 
+      post.text.toLowerCase().includes(search.toLowerCase())));
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updateFetch]);
 
 
   useEffect(() => {

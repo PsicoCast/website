@@ -76,7 +76,7 @@ export default function Page() {
             <article
                 className="md:w-3/5 lg:w-3/4 border border-black rounded-lg"
             >
-              {type !== 'modules' && <AllCardsList search={search} type={type} isModuleEdit={false} moduleToAdd={0}/>}
+              {type !== 'modules' && <AllCardsList search={search} type={type} isModuleEdit={false} moduleToAdd={0} updateFetch={false}/>}
               {type === 'modules' && <ModulesList />} 
             </article>
             <div
