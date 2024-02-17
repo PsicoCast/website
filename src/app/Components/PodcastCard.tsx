@@ -59,6 +59,7 @@ export default function PodcastCard ({ info, isModuleEdit, moduleToAdd }: {info:
     });
     if (response.status === 200) {
       await response.json();
+      alert('Conteúdo editado com sucesso!, Clique em Atualizar Conteúdo para ver as mudanças');
       setIsEdit(false);
     } else {
       const errorData = await response.json(); // Get the error details from the response body

@@ -48,13 +48,13 @@ export default function DashBoard() {
         });
       
         if (response.status === 200) {
-          console.log('Success!');
+          alert('Conteúdo adicionado com sucesso!, Clique em Atualizar Conteúdo para ver as mudanças');
           const data = await response.json();
           console.log(data);
         } else {
           console.log(`Error: ${response.status}`);
           const errorData = await response.json(); // Get the error details from the response body
-          console.log(errorData);
+          alert(errorData.message)
         }
     }
 
@@ -156,6 +156,7 @@ export default function DashBoard() {
       ) : (
         <div 
         className="flex flex-col items-center justify-center border- shadow-md p-4 rounded max-w-full mx-auto mt-8 mb-4"
+        // className="flex flex-col items-center justify-center border- shadow-md p-4 rounded max-w-full mx-auto mt-8 mb-4 w-full md:w-3/5"
         // style={{
         //     background: "radial-gradient(circle at center, #d25e2d, #ffb700, #140621)",
         //     backgroundAttachment: 'fixed',
@@ -163,7 +164,9 @@ export default function DashBoard() {
         //     minHeight: '100vh'
         // }}
         >
-        <main className="w-7/10 h-full overflow-auto">
+        <main 
+        className="w-full md:w-3/5 h-full overflow-auto"
+        >
         <div className="flex flex-col md:flex-row items-center justify-center text-center text-2xl mb-3 space-x-0 md:space-x-4">
             <div className="w-16 h-16 md:w-16 md:h-16 flex-shrink-0">
                 <Image src="/logo.png" alt="Logo" width={64} height={64} layout="responsive" objectFit="contain"/>
@@ -213,7 +216,7 @@ export default function DashBoard() {
                     onClick={() => setType('modules')}
                 >Módulos</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ml-auto hover:bg-black hover:text-white  bg-yellow-600`}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ml-10 hover:bg-black hover:text-white  bg-yellow-600`}
                     onClick={() => setUpdateFetch((prev) => !prev)}
                 >Atualizar Conteúdo</button>
             </div>

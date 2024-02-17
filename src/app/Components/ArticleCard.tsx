@@ -54,7 +54,8 @@ export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info:
       body: JSON.stringify(contentToEdit)
     });
     if (response.status === 200) {
-      const data = await response.json();
+      await response.json();
+      alert('Conteúdo editado com sucesso!, Clique em Atualizar Conteúdo para ver as mudanças');
       setIsEdit(false);
     } else {
       const errorData = await response.json(); // Get the error details from the response body
