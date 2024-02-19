@@ -42,6 +42,27 @@ export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info:
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const deleteContent = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (window.confirm('Tem certeza de que deseja deletar este conteúdo?')) {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://localhost:3001/content/${info.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`
+        }
+      });
+      if (response.status === 200) {
+        await response.json();
+        alert('Conteúdo deletado com sucesso!, Clique em Atualizar Conteúdo para ver as mudanças');
+      } else {
+        const errorData = await response.json(); // Get the error details from the response body
+        alert(errorData.message)
+      }
+    }
+  };
+
   const saveEdit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
@@ -178,7 +199,8 @@ export default function ArticleCards({ info, isModuleEdit, moduleToAdd }: {info:
         className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
         >Editar</button>
         <button
-        className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
+          onClick={(e) => deleteContent(e)}
+          className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
         >Deletar</button>
       </>      
       ) : (

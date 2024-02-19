@@ -3,16 +3,17 @@ import { useEffect, useState } from "react";
 import ModuleCard from './ModuleCard';
 import AllCardsList from './AllCardsList';
 import { modulesMocks } from '../../Mocks/modulesMocks';
-// import { modules } from '../Types/types';
+import Image from 'next/image';
+import { content, module} from '../Types/types';
 
 type IModule = {
   id: number,
   title: string,
-  // thumbnail: string,
-  contents: any
+  thumbnail: string,
+  contents: content[]
 }
 
-export default function ModulesList() {
+export default function ModulesList(moduleList: module[]) {
   
     const path = usePathname();
     // const [ data, setData ] = useState<module[]>([]);
@@ -105,7 +106,7 @@ export default function ModulesList() {
                       >
                         Voltar
                       </button>
-                      <AllCardsList search={search} type={'todos'} isModuleEdit={true} moduleToAdd={moduleToEdit.id}/>
+                      <AllCardsList search={search} type={'todos'} isModuleEdit={true} moduleToAdd={moduleToEdit.id} updateFetch={false} />
                     </div>
                   </div>
                 </div>
@@ -135,6 +136,9 @@ export default function ModulesList() {
                     key={module.title}
                     className="w-full flex justify-between items-center"
                   >
+                    <div className="w-full h-32 relative mb-2">
+                      <Image src={module.thumbnail} alt={module.title} layout="fill" objectFit="contain"/>
+                    </div>
                     <button 
                     className="w-1/2 px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                     onClick={() => setModuleId(module.id)}

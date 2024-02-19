@@ -3,7 +3,7 @@ import { useState } from "react";
 import AllCardsList from "../Components/AllCardsList";
 import ModulesList from "../Components/ModulesList";
 import Image from 'next/image';
-import { content } from '../Types/types';
+import { content, module } from '../Types/types';
 
 type Content = {
     type: string;
@@ -25,6 +25,7 @@ export default function DashBoard() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ updateFetch, setUpdateFetch ] = useState(false);
+    const [ modules, setModules ] = useState<module[]>([]);
     const [ addContent, setAddContent ] = useState<Content>({
         type: '',
         title: '',
