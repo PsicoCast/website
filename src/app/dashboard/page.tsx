@@ -472,7 +472,7 @@ export default function DashBoard() {
                 </div>
                 )}
                 {type !== 'modules' && <AllCardsList search={search} type={type} isModuleEdit={false} moduleToAdd={0} updateFetch={updateFetch}/>}
-                {type === 'modules' && <ModulesList />} 
+                {/* {type === 'modules' && <ModulesList />}  */}
             </article>
         </section>
     </main>
