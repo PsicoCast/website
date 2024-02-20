@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AllCardsList from "./Components/AllCardsList";
 import ModulesList from "./Components/ModulesList";
 import Sidebar from "./Components/Sidebar/Sidebar";
@@ -53,16 +53,16 @@ export default function Page() {
                     onClick={() => setType('todos')}
                 >Todos</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'podcast' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                    onClick={() => setType('podcast')}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'spotify' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('spotify')}
                 >PodCast</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'artigo' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                    onClick={() => setType('artigo')}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'text' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('text')}
                 >Artigos</button>
                 <button
-                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'video' ? 'bg-black text-white' : 'bg-yellow-600'}`}
-                    onClick={() => setType('video')}
+                    className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'youtube' ? 'bg-black text-white' : 'bg-yellow-600'}`}
+                    onClick={() => setType('youtube')}
                 >Videos</button>
                 <button
                     className={`px-3 py-2 border rounded-md focus:outline-none text-lg ${type === 'modules' ? 'bg-black text-white' : 'bg-yellow-600'}`}
@@ -76,8 +76,8 @@ export default function Page() {
             <article
                 className="md:w-3/5 lg:w-3/4 border border-black rounded-lg"
             >
-              {type !== 'modules' && <AllCardsList search={search} type={type} isModuleEdit={false} moduleToAdd={0}/>}
-              {type === 'modules' && <ModulesList />} 
+              {type !== 'modules' && <AllCardsList search={search} type={type} isModuleEdit={false} moduleToAdd={0} updateFetch={false}/>}
+              {type === 'modules' && <ModulesList updateFetch={false}/>} 
             </article>
             <div
                 className="md:w-2/5 lg:w-1/4 h-full border border-black rounded-lg sidebar overflow-auto sticky top-0"
