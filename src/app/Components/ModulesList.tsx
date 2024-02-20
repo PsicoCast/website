@@ -2,21 +2,20 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from "react";
 import ModuleCard from './ModuleCard';
 import AllCardsList from './AllCardsList';
-import { modulesMocks } from '../../Mocks/modulesMocks';
+// import { modulesMocks } from '../../Mocks/modulesMocks';
 import Image from 'next/image';
-import { content, module} from '../Types/types';
+import { content, module } from '../Types/types';
 
 type IModule = {
   id: number,
-  title: string,
+  name: string,
   thumbnail: string,
-  contents: content[]
+  content: content[]
 }
 
-export default function ModulesList(moduleList: module[]) {
+export default function ModulesList({updateFetch}: {updateFetch: boolean}) {
   
     const path = usePathname();
-    // const [ data, setData ] = useState<module[]>([]);
     const [ moduleId, setModuleId ] = useState(0);
     const [ isModuleRendered, setIsModuleRendered ] = useState(false);
     const [ isAdm ] = useState(path === '/dashboard');
@@ -24,6 +23,29 @@ export default function ModulesList(moduleList: module[]) {
     const [ moduleToEdit, setModuleToEdit ] = useState({} as IModule);
     const [ addModuleContent, setAddModuleContent ] = useState(false);
     const [ search, setSearch ] = useState('');
+    const [ data, setData ] = useState<module[]>([]);
+
+    useEffect(() => {
+      const modules = fetch('http://localhost:3001/module')
+      .then(response => response.json())
+      .then(data => data)
+      .catch(error => console.error('Error:', error));
+      const resolvedPromisse = Promise.resolve(modules);
+      resolvedPromisse.then((value) => {
+        setData(value);
+      });
+    }, []);
+
+    useEffect(() => {
+      const modules = fetch('http://localhost:3001/module')
+      .then(response => response.json())
+      .then(data => data)
+      .catch(error => console.error('Error:', error));
+      const resolvedPromisse = Promise.resolve(modules);
+      resolvedPromisse.then((value) => {
+        setData(value);
+      });
+    }, [updateFetch]);
     
     useEffect(() => {
         moduleId !== 0 && setIsModuleRendered(true);
@@ -33,11 +55,12 @@ export default function ModulesList(moduleList: module[]) {
       setModuleToEdit((prevState) => {
         return {
           ...prevState,
-          contents: prevState.contents.filter((content: any) => content.title !== moduleToEdit.contents[moduleId].title)
+          contents: prevState.content.filter((content: any) => content.title !== moduleToEdit.content[moduleId].title)
         }
       })
     };
 
+    console.log(data)
     
     return !isModuleRendered ? (
       isEdit ? (
@@ -53,7 +76,7 @@ export default function ModulesList(moduleList: module[]) {
               type="text"
               name="title"
               id="title"
-              placeholder={moduleToEdit.title}
+              placeholder={moduleToEdit.name}
             />
             <div
               className='flex flex-col space-y-4'
@@ -62,7 +85,7 @@ export default function ModulesList(moduleList: module[]) {
               <div
                 className="flex flex-col space-y-4"
               >
-                {moduleToEdit.contents.map((content: any, index: number) => {
+                {moduleToEdit.content.map((content: any, index: number) => {
                   return (<div
                     key={index}
                     className="flex flex-col items-center justify-center border border-black rounded p-2"
@@ -130,20 +153,21 @@ export default function ModulesList(moduleList: module[]) {
         <div
         className="flex flex-col bg-gray-100 items-center p-4 space-y-4"
         >{
-            modulesMocks.map((module) => {
+          data.map((module) => {
                 return (
                   <div
-                    key={module.title}
-                    className="w-full flex justify-between items-center"
+                    key={module.name}
+                    // className="w-full flex justify-between items-center"
+                    className="w-full flex justify-between items-center border-b border-black"
                   >
                     <div className="w-full h-32 relative mb-2">
-                      <Image src={module.thumbnail} alt={module.title} layout="fill" objectFit="contain"/>
+                      <Image src={module.thumbnail} alt={module.name} layout="fill" objectFit="contain"/>
                     </div>
                     <button 
                     className="w-1/2 px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
                     onClick={() => setModuleId(module.id)}
                     >
-                      <h1>{module.title}</h1>
+                      <h1>{module.name}</h1>
                     </button>
                     {isAdm && (
                       <button
@@ -164,7 +188,7 @@ export default function ModulesList(moduleList: module[]) {
       )
     ) : (
     <>
-        <ModuleCard module={modulesMocks.find(module => module.id === moduleId)}/>
+        <ModuleCard module={data.find(module => module.id === moduleId) as module}/>
         <button
           className={`mt-4 text-white px-4 py-2 rounded hover:bg-gray-600 bg-yellow-600 mx-auto block`}
           onClick={() => {

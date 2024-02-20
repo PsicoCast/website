@@ -11,9 +11,9 @@ export type content = {
 
 export type module = {
     id: number;
-    title: string;
+    name: string;
     thumbnail: string;
-    contents: content[];
+    content: content[];
     created_at: Date;
     updated_at: Date;
 }
