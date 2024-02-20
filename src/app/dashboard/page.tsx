@@ -116,11 +116,6 @@ export default function DashBoard() {
     const handleEnter = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         await fetchLogin();
-        // if (userInput === pass) {
-        //     setIsAdm(true);
-        // } else {
-        //     alert('Senha incorreta!');
-        // }
     };
 
 
