@@ -44,6 +44,24 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
     window.open(url, '_blank');
   }
 
+  const addContentToModule = async () => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`http://localhost:3001/module/content`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${token}`
+      },
+      body: JSON.stringify({contentId: info.id, moduleId: moduleToAdd})
+    });
+    const responseData = await response.json();
+    if (response.status === 200) {
+      alert('Conteúdo adicionado ao módulo com sucesso!');
+    } else {
+      alert(responseData.message);
+    }
+  };
+
   const deleteContent = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (window.confirm('Tem certeza de que deseja deletar este conteúdo?')) {
@@ -185,7 +203,7 @@ export default function VideoCard({ info, isModuleEdit, moduleToAdd }: {info: In
       ) : (
         <>
         <button
-          onClick={() => alert(`${info.title} adicionado ao módulo ${moduleToAdd}`)}
+          onClick={() => addContentToModule()}
           className="w-full px-3 py-2 border border-yellow-500 rounded-md focus:outline-none hover:bg-yellow-500 hover:text-white"
         >Adicionar Conteúdo ao Módulo</button>
         </>
